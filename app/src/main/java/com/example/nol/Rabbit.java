@@ -100,7 +100,7 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
             }
 
             // 토끼 글자 위에서 손을 뗌
-            if(event.getRawX()> 300 && event.getRawX() < 500 && event.getRawY() > 160 && event.getRawY() <290) {
+            if (event.getRawX() > 300 && event.getRawX() < 500 && event.getRawY() > 160 && event.getRawY() < 290) {
                 correct.setVisibility(View.VISIBLE);
             }
             Log.d("viewTest", "x : " + event.getRawX() + " y : " + event.getRawY());
@@ -108,7 +108,7 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
         return true;
     }
 
-    public void makeDialog(String text){
+    public void makeDialog(String text) {
         // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
         Dialog dlg = new Dialog(this);
 
@@ -122,8 +122,8 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
         dlg.show();
 
         // 커스텀 다이얼로그의 각 위젯들을 정의한다.
-        TextView hintText = (TextView)dlg.findViewById(R.id.hintText);
-        TextView hintOk = (TextView)dlg.findViewById(R.id.hintOk);
+        TextView hintText = (TextView) dlg.findViewById(R.id.hintText);
+        TextView hintOk = (TextView) dlg.findViewById(R.id.hintOk);
 
         hintText.setText(text);
         hintOk.setOnClickListener(new View.OnClickListener() {
