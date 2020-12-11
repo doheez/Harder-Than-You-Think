@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:background="@drawable/dotpattern"
+    android:orientation="vertical">
+    <!-- 말풍선 -->
+    <TextView
+        android:layout_width="380dp"
+        android:layout_height="71dp"
+        android:background="@drawable/bubble"
+        android:layout_gravity="top|center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="배고픈 토끼에게 먹이를 주세요"
+        android:textStyle="bold"
+        android:textSize="25dp"/>
+
+    <!-- 게임 내용물 여기 다 넣기 -->
+
+
+        <ImageView
+            android:id="@+id/rabbit"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/rabbit"/>
+        <ImageView
+            android:id="@+id/cookie"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="60dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_vertical|right"
+            android:src="@drawable/cookie"/>
+    <ImageView
+        android:id="@+id/correct1"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@drawable/correct"
+        android:visibility="gone"/>
+
+    <!-- 버튼들-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="이전단계"
+            android:textSize="15dp" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="게임목록"
+            android:textSize="15dp" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="힌트보기"
+            android:textSize="15dp" />
+    </LinearLayout>
+</FrameLayout>

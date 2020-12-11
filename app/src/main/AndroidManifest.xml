@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Enter"/>
+        <activity android:name=".Rabbit"/>
         <activity android:name=".Base"/>
 
     </application>
