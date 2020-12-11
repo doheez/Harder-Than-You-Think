@@ -24,6 +24,7 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_1_rabbit);
+        MySoundPlayer.initSounds(getApplicationContext());
 
         rabbit = (ImageView) findViewById(R.id.rabbit);
         cookie = (ImageView) findViewById(R.id.cookie);
@@ -36,6 +37,7 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 Intent intent = new Intent(getApplicationContext(), Enter.class);
                 startActivity(intent);
                 finish();
@@ -47,6 +49,7 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
         listBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
 
             }
         });
@@ -56,6 +59,7 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
         hintBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 makeDialog("화면에는 토끼가 한 마리만 있는 게 아닙니다.");
             }
         });
@@ -71,6 +75,7 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
         int parentHeight = ((ViewGroup) v.getParent()).getHeight();    // 부모 View 의 Height
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            MySoundPlayer.play(MySoundPlayer.COOKIE);
             // 뷰 누름
             oldXvalue = event.getX();
             oldYvalue = event.getY();
@@ -101,7 +106,9 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
 
             // 토끼 글자 위에서 손을 뗌
             if (event.getRawX() > 300 && event.getRawX() < 500 && event.getRawY() > 160 && event.getRawY() < 290) {
+                MySoundPlayer.stop(MySoundPlayer.COOKIE);
                 correct.setVisibility(View.VISIBLE);
+                MySoundPlayer.play(MySoundPlayer.CORRECT);
             }
             Log.d("viewTest", "x : " + event.getRawX() + " y : " + event.getRawY());
         }

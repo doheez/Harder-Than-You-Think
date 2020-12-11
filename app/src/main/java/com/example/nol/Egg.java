@@ -3,6 +3,7 @@ package com.example.nol;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +21,7 @@ public class Egg extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_egg);
+        setContentView(R.layout.activity_2_egg);
         correct = (ImageView) findViewById(R.id.correct1);
         MySoundPlayer.initSounds(getApplicationContext());
 
@@ -33,6 +34,29 @@ public class Egg extends AppCompatActivity {
                 makeDialog("계란을 자극시켜 보세요");
             }
         });
+
+        // 이전 단계
+        prevBtn = (Button) findViewById(R.id.eggPrev);
+        prevBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+                Intent intent = new Intent(getApplicationContext(), Rabbit.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        // 게임 목록
+        listBtn = (Button) findViewById(R.id.eggList);
+        listBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+
+            }
+        });
+
 
         imageView = (ImageView) findViewById(R.id.egg); // ID 설정을 합니다
 
@@ -70,7 +94,8 @@ public class Egg extends AppCompatActivity {
                             public void run()
                             {
                                 MySoundPlayer.stop(MySoundPlayer.CHICKEN);
-                                MySoundPlayer.play2(MySoundPlayer.CORRECT);
+                                MySoundPlayer.stop(MySoundPlayer.BROKEN);
+                                MySoundPlayer.play(MySoundPlayer.CORRECT);
                                 correct.setVisibility(View.VISIBLE); //딜레이 후 시작할 코드 작성
                             }
                         }, 2000);// 2초 정도 딜레이를 준 후 시작
