@@ -28,7 +28,6 @@ import java.util.List;
 public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
     ImageView rabbit, cookie, correct;
     Button prevBtn, listBtn, hintBtn;
-    List<String> gameList = new ArrayList<String>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,10 +52,6 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
                 finish();
             }
         });
-
-        // 게임 목록에 아이템 추가
-        for(int i = 1; i <= 5; i++)
-            gameList.add(i + "단계");
 
         // 게임 목록
         listBtn = (Button) findViewById(R.id.rabbitList);
@@ -179,6 +174,10 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
 
         GameListAdapter adapter = new GameListAdapter(this, R.layout.listitem_game);
 
+        // 게임 목록에 아이템 추가
+        for(int i = 1; i <= 5; i++)
+            adapter.gameList.add(i + "단계");
+
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -200,42 +199,5 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
         dialog.setCancelable(false);
         //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
-    }
-
-    public class GameListAdapter extends BaseAdapter {
-        Context context;
-        int layout;
-        LayoutInflater inflater;
-
-        public GameListAdapter(Context context, int layout){
-            this.context = context;
-            this.layout = layout;
-            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
-
-        @Override
-        public int getCount() {
-            return gameList.size();
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return gameList.get(i);
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            if(view == null)
-                view = inflater.inflate(layout, null);
-
-            TextView listStep = (TextView)view.findViewById(R.id.gameListStep);
-            listStep.setText(gameList.get(i));
-            return view;
-        }
     }
 }

@@ -30,7 +30,6 @@
         android:id="@+id/hintOk"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_weight="1"
         android:background="@color/brown_primary"
         android:clickable="true"
         android:gravity="center"
