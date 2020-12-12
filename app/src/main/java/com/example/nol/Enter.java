@@ -37,6 +37,7 @@ public class Enter extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Rabbit.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
 

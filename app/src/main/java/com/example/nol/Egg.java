@@ -34,7 +34,7 @@ public class Egg extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2_egg);
-        correct = (ImageView) findViewById(R.id.correct1);
+        correct = (ImageView) findViewById(R.id.correct2);
         MySoundPlayer.initSounds(getApplicationContext());
 
         // 힌트 보기
@@ -56,6 +56,7 @@ public class Egg extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), Rabbit.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
 
@@ -116,10 +117,18 @@ public class Egg extends AppCompatActivity {
                             }
                         }, 2000);// 2초 정도 딜레이를 준 후 시작
 
-
+                        new Handler().postDelayed(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                Intent intent = new Intent(getApplicationContext(), Birthday.class);
+                                startActivity(intent);
+                                finish();
+                                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                            }
+                        }, 4000);
                     }
-
-
                 }
             });
         }
@@ -186,7 +195,6 @@ public class Egg extends AppCompatActivity {
         });
 
         dialog.setCancelable(false);
-        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
     }
 }

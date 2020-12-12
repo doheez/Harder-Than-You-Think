@@ -50,6 +50,7 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
                 Intent intent = new Intent(getApplicationContext(), Enter.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
 
@@ -197,7 +198,6 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
         });
 
         dialog.setCancelable(false);
-        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
     }
 }

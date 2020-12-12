@@ -23,6 +23,9 @@
         <activity android:name=".Enter" >
         </activity>
         <activity android:name=".Rabbit" />
+        <activity android:name=".Birthday">
+
+        </activity>
         <activity android:name=".Base" />
     </application>
 

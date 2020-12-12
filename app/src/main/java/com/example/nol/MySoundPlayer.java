@@ -18,6 +18,7 @@ public class MySoundPlayer {
     public static final int CHICKEN = R.raw.chicken;
     public static final int CORRECT = R.raw.correct;
     public static final int BUTTON_SOUND = R.raw.button_sound;
+    public static final int CAKE = R.raw.cake;
 
     private static int ret;
     private static SoundPool soundPool;
@@ -43,6 +44,7 @@ public class MySoundPlayer {
         soundPoolMap.put(CORRECT, soundPool.load(context, CORRECT, 1));
         soundPoolMap.put(BUTTON_SOUND, soundPool.load(context, BUTTON_SOUND, 1));
         soundPoolMap.put(COOKIE, soundPool.load(context, COOKIE, 1));
+        soundPoolMap.put(CAKE, soundPool.load(context, CAKE, 1));
 
     }
 
