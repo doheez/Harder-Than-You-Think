@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,12 +29,16 @@ import java.util.List;
 public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
     ImageView rabbit, cookie, correct;
     Button prevBtn, listBtn, hintBtn;
+    int flag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_1_rabbit);
         MySoundPlayer.initSounds(getApplicationContext());
+
+        Intent intent = getIntent();
+        flag = intent.getExtras().getInt("flag");
 
         rabbit = (ImageView) findViewById(R.id.rabbit);
         cookie = (ImageView) findViewById(R.id.cookie);
@@ -125,6 +130,8 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
                     @Override
                     public void run() {
                         Intent intent = new Intent(getApplicationContext(), Egg.class);
+                        if(flag == 1) ++flag;
+                        intent.putExtra("flag", flag);
                         startActivity(intent);
                         finish();
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
@@ -173,7 +180,7 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
         ListView listview = (ListView)view.findViewById(R.id.gameList);
         AlertDialog dialog = builder.create();
 
-        GameListAdapter adapter = new GameListAdapter(this, R.layout.listitem_game);
+        GameListAdapter adapter = new GameListAdapter(this, R.layout.listitem_game, flag);
 
         // 게임 목록에 아이템 추가
         for(int i = 1; i <= 5; i++)
@@ -184,7 +191,27 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                dialog.dismiss();
+                // 갈색이면 클릭 가능
+                if (position < adapter.flag){
+                    MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+                    if(position == 0) // 1단계
+                        dialog.dismiss(); // 지금 화면이니까 그냥 다이얼로그 닫음
+                    else if(position == 1) { // 2단계
+                        Intent intent = new Intent(getApplicationContext(), Egg.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    }
+                    else if(position == 2) {// 3단계
+                        Intent intent = new Intent(getApplicationContext(), Birthday.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    }
+                }
+                // 회색이면 클릭 불가능
             }
         });
 

@@ -43,11 +43,15 @@ public class Birthday extends AppCompatActivity implements SensorEventListener {
 
     ImageView man, cake, correct;
     Button prevBtn, listBtn, hintBtn;
+    int flag;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_3_birthday);
         MySoundPlayer.initSounds(getApplicationContext());
+
+        Intent intent = getIntent();
+        flag = intent.getExtras().getInt("flag");
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerormeterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -63,6 +67,7 @@ public class Birthday extends AppCompatActivity implements SensorEventListener {
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 Intent intent = new Intent(getApplicationContext(), Egg.class);
+                intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
@@ -192,7 +197,7 @@ public class Birthday extends AppCompatActivity implements SensorEventListener {
         ListView listview = (ListView)view.findViewById(R.id.gameList);
         AlertDialog dialog = builder.create();
 
-        GameListAdapter adapter = new GameListAdapter(this, R.layout.listitem_game);
+        GameListAdapter adapter = new GameListAdapter(this, R.layout.listitem_game, flag);
 
         // 게임 목록에 아이템 추가
         for(int i = 1; i <= 5; i++)
@@ -203,7 +208,28 @@ public class Birthday extends AppCompatActivity implements SensorEventListener {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                dialog.dismiss();
+                // 갈색이면 클릭 가능
+                if (position < adapter.flag){
+                    MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+                    if(position == 0) { // 1단계
+                        Intent intent = new Intent(getApplicationContext(), Rabbit.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    }
+                    else if(position == 1) { // 2단계
+                        Intent intent = new Intent(getApplicationContext(), Egg.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    }
+                    else if(position == 2) {// 3단계
+                        dialog.dismiss(); // 지금 화면이니까 그냥 다이얼로그 닫음
+                    }
+                }
+                // 회색이면 클릭 불가능
             }
         });
 

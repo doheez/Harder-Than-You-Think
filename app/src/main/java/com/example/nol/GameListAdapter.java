@@ -15,10 +15,12 @@ public class GameListAdapter extends BaseAdapter {
     int layout;
     LayoutInflater inflater;
     List<String> gameList = new ArrayList<String>();
+    int flag; // 몇 단계까지만 누를 수 있는가
 
-    public GameListAdapter(Context context, int layout){
+    public GameListAdapter(Context context, int layout, int flag){
         this.context = context;
         this.layout = layout;
+        this.flag = flag;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -42,8 +44,15 @@ public class GameListAdapter extends BaseAdapter {
         if(view == null)
             view = inflater.inflate(layout, null);
 
+        // 깬 단계는 갈색
+        view.setBackground(context.getResources().getDrawable(R.drawable.round_corner_gamelist));
+        // 안 깬 단계는 회색
+        if (i >= flag)
+            view.setBackground(context.getResources().getDrawable(R.drawable.round_corner_gamelist_gray));
+
         TextView listStep = (TextView)view.findViewById(R.id.gameListStep);
         listStep.setText(gameList.get(i));
+
         return view;
     }
 }
