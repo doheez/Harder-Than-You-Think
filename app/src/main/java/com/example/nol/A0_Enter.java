@@ -12,14 +12,14 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Enter extends AppCompatActivity {
+public class A0_Enter extends AppCompatActivity {
     private Button start, explain, info;
     MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enter);
+        setContentView(R.layout.activity_0_enter);
         MySoundPlayer.initSounds(getApplicationContext());
 
         mediaPlayer = MediaPlayer.create(this,R.raw.backgroundmusic);
@@ -37,8 +37,8 @@ public class Enter extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                Intent intent = new Intent(getApplicationContext(), Rabbit.class);
-                intent.putExtra("flag", 1); // 1단계
+                Intent intent = new Intent(getApplicationContext(), A1_Rabbit.class);
+                intent.putExtra("flag", 1);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);

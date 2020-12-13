@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_nol_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nol">
-        <activity android:name=".Egg">
+        <activity android:name=".A2_Egg">
 
         </activity>
         <activity android:name=".MainActivity" />
@@ -20,10 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Enter" >
+        <activity android:name=".A0_Enter" >
         </activity>
-        <activity android:name=".Rabbit" />
-        <activity android:name=".Birthday">
+        <activity android:name=".A1_Rabbit" />
+        <activity android:name=".A3_Birthday">
 
         </activity>
         <activity android:name=".Base" />

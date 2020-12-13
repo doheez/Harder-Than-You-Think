@@ -21,7 +21,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Egg extends AppCompatActivity {
+public class A2_Egg extends AppCompatActivity {
     private ImageView imageView, correct;
     Button prevBtn, listBtn, hintBtn;
     int i=0;
@@ -58,7 +58,7 @@ public class Egg extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                Intent intent = new Intent(getApplicationContext(), Rabbit.class);
+                Intent intent = new Intent(getApplicationContext(), A1_Rabbit.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
                 finish();
@@ -128,7 +128,7 @@ public class Egg extends AppCompatActivity {
                             @Override
                             public void run()
                             {
-                                Intent intent = new Intent(getApplicationContext(), Birthday.class);
+                                Intent intent = new Intent(getApplicationContext(), A3_Birthday.class);
                                 if(flag == 2) ++flag;
                                 intent.putExtra("flag", flag);
                                 startActivity(intent);
@@ -193,7 +193,7 @@ public class Egg extends AppCompatActivity {
                 if (position < adapter.flag){
                     MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                     if(position == 0) { // 1단계
-                        Intent intent = new Intent(getApplicationContext(), Rabbit.class);
+                        Intent intent = new Intent(getApplicationContext(), A1_Rabbit.class);
                         intent.putExtra("flag", flag);
                         startActivity(intent);
                         finish();
@@ -203,7 +203,7 @@ public class Egg extends AppCompatActivity {
                         dialog.dismiss(); // 지금 화면이니까 그냥 다이얼로그 닫음
                     }
                     else if(position == 2) {// 3단계
-                        Intent intent = new Intent(getApplicationContext(), Birthday.class);
+                        Intent intent = new Intent(getApplicationContext(), A3_Birthday.class);
                         intent.putExtra("flag", flag);
                         startActivity(intent);
                         finish();

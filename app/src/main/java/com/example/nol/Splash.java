@@ -17,7 +17,7 @@ public class Splash extends Activity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(getApplicationContext(), Enter.class);
+                Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
                 startActivity(intent);
                 finish();
             }

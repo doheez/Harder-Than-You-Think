@@ -21,7 +21,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
+public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener {
     ImageView rabbit, cookie, correct;
     Button prevBtn, listBtn, hintBtn;
     int flag;
@@ -50,7 +50,7 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
             @Override
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                Intent intent = new Intent(getApplicationContext(), Enter.class);
+                Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
@@ -127,7 +127,7 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(getApplicationContext(), Egg.class);
+                        Intent intent = new Intent(getApplicationContext(), A2_Egg.class);
                         if(flag == 1) ++flag;
                         intent.putExtra("flag", flag);
                         startActivity(intent);
@@ -195,14 +195,14 @@ public class Rabbit extends AppCompatActivity implements View.OnTouchListener {
                     if(position == 0) // 1단계
                         dialog.dismiss(); // 지금 화면이니까 그냥 다이얼로그 닫음
                     else if(position == 1) { // 2단계
-                        Intent intent = new Intent(getApplicationContext(), Egg.class);
+                        Intent intent = new Intent(getApplicationContext(), A2_Egg.class);
                         intent.putExtra("flag", flag);
                         startActivity(intent);
                         finish();
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     }
                     else if(position == 2) {// 3단계
-                        Intent intent = new Intent(getApplicationContext(), Birthday.class);
+                        Intent intent = new Intent(getApplicationContext(), A3_Birthday.class);
                         intent.putExtra("flag", flag);
                         startActivity(intent);
                         finish();

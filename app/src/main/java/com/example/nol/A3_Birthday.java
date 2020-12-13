@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Birthday extends AppCompatActivity implements SensorEventListener {
+public class A3_Birthday extends AppCompatActivity implements SensorEventListener {
 
     private long lastTime;
     private float speed;
@@ -68,7 +68,7 @@ public class Birthday extends AppCompatActivity implements SensorEventListener {
             @Override
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                Intent intent = new Intent(getApplicationContext(), Egg.class);
+                Intent intent = new Intent(getApplicationContext(), A2_Egg.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
                 finish();
@@ -214,14 +214,14 @@ public class Birthday extends AppCompatActivity implements SensorEventListener {
                 if (position < adapter.flag){
                     MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                     if(position == 0) { // 1단계
-                        Intent intent = new Intent(getApplicationContext(), Rabbit.class);
+                        Intent intent = new Intent(getApplicationContext(), A1_Rabbit.class);
                         intent.putExtra("flag", flag);
                         startActivity(intent);
                         finish();
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     }
                     else if(position == 1) { // 2단계
-                        Intent intent = new Intent(getApplicationContext(), Egg.class);
+                        Intent intent = new Intent(getApplicationContext(), A2_Egg.class);
                         intent.putExtra("flag", flag);
                         startActivity(intent);
                         finish();
