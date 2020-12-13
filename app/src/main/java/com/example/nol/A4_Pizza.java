@@ -1,17 +1,25 @@
 package com.example.nol;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -41,18 +49,42 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
         // 타이머 시작
         timer();
 
-        pizza1 = (ImageView) findViewById(R.id.pizza1); pizza1.setOnTouchListener(this);
-        pizza2 = (ImageView) findViewById(R.id.pizza2); pizza2.setOnTouchListener(this);
-        pizza2v2 = (ImageView) findViewById(R.id.pizza2v2); pizza2v2.setOnTouchListener(this);
-        pizza2v3 = (ImageView) findViewById(R.id.pizza2v3); pizza2v3.setOnTouchListener(this);
-        pizza3 = (ImageView) findViewById(R.id.pizza3); pizza3.setOnTouchListener(this);
-        pizza4 = (ImageView) findViewById(R.id.pizza4); pizza4.setOnTouchListener(this);
-        pizza5 = (ImageView) findViewById(R.id.pizza5); pizza5.setOnTouchListener(this);
-        pizza5v2 = (ImageView) findViewById(R.id.pizza5v2); pizza5v2.setOnTouchListener(this);
-        pizza6 = (ImageView) findViewById(R.id.pizza6); pizza6.setOnTouchListener(this);
-        pizza7 = (ImageView) findViewById(R.id.pizza7); pizza7.setOnTouchListener(this);
-        pizza8 = (ImageView) findViewById(R.id.pizza8); pizza8.setOnTouchListener(this);
-        pizza8v2 = (ImageView) findViewById(R.id.pizza8v2); pizza8v2.setOnTouchListener(this);
+        pizza1 = (ImageView) findViewById(R.id.pizza1);
+        pizza1.setDrawingCacheEnabled(true);
+        pizza1.setOnTouchListener(this);
+        pizza2 = (ImageView) findViewById(R.id.pizza2);
+        pizza2.setDrawingCacheEnabled(true);
+        pizza2.setOnTouchListener(this);
+        pizza2v2 = (ImageView) findViewById(R.id.pizza2v2);
+        pizza2v2.setDrawingCacheEnabled(true);
+        pizza2v2.setOnTouchListener(this);
+        pizza2v3 = (ImageView) findViewById(R.id.pizza2v3);
+        pizza2v3.setDrawingCacheEnabled(true);
+        pizza2v3.setOnTouchListener(this);
+        pizza3 = (ImageView) findViewById(R.id.pizza3);
+        pizza3.setDrawingCacheEnabled(true);
+        pizza3.setOnTouchListener(this);
+        pizza4 = (ImageView) findViewById(R.id.pizza4);
+        pizza4.setDrawingCacheEnabled(true);
+        pizza4.setOnTouchListener(this);
+        pizza5 = (ImageView) findViewById(R.id.pizza5);
+        pizza5.setDrawingCacheEnabled(true);
+        pizza5.setOnTouchListener(this);
+        pizza5v2 = (ImageView) findViewById(R.id.pizza5v2);
+        pizza5v2.setDrawingCacheEnabled(true);
+        pizza5v2.setOnTouchListener(this);
+        pizza6 = (ImageView) findViewById(R.id.pizza6);
+        pizza6.setDrawingCacheEnabled(true);
+        pizza6.setOnTouchListener(this);
+        pizza7 = (ImageView) findViewById(R.id.pizza7);
+        pizza7.setDrawingCacheEnabled(true);
+        pizza7.setOnTouchListener(this);
+        pizza8 = (ImageView) findViewById(R.id.pizza8);
+        pizza8.setDrawingCacheEnabled(true);
+        pizza8.setOnTouchListener(this);
+        pizza8v2 = (ImageView) findViewById(R.id.pizza8v2);
+        pizza8v2.setDrawingCacheEnabled(true);
+        pizza8v2.setOnTouchListener(this);
         correct = (ImageView) findViewById(R.id.pizzaCorrect);
         cnt = (TextView) findViewById(R.id.pizzaCnt);
 
@@ -72,7 +104,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
             @Override
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                if(Integer.parseInt(cnt.getText().toString()) != 0)
+                if (Integer.parseInt(cnt.getText().toString()) != 0)
                     cnt.setText("" + (Integer.parseInt(cnt.getText().toString()) - 1));
             }
         });
@@ -83,7 +115,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
             @Override
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                if(Integer.parseInt(cnt.getText().toString()) == 12){ // 정답이면
+                if (Integer.parseInt(cnt.getText().toString()) == 12) { // 정답이면
                     correct.setVisibility(View.VISIBLE);
                     MySoundPlayer.play(MySoundPlayer.CORRECT);
 
@@ -92,13 +124,13 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                         @Override
                         public void run() {
                             Intent intent = new Intent(getApplicationContext(), A5_Owl.class);
-                            if(flag == 4) ++flag;
+                            if (flag == 4) ++flag;
                             intent.putExtra("flag", flag);
                             startActivity(intent);
                             finish();
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         }
-                    },2000);
+                    }, 2000);
                 }
             }
         });
@@ -146,6 +178,12 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
 
         int parentWidth = ((ViewGroup) v.getParent()).getWidth();    // 부모 View 의 Width
         int parentHeight = ((ViewGroup) v.getParent()).getHeight();    // 부모 View 의 Height
+
+        // 투명 영역 터치 안 되게
+        Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
+        int color = bmp.getPixel((int) event.getX(), (int) event.getY());
+        if (color == Color.TRANSPARENT)
+            return false;
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // 뷰 누름
@@ -213,13 +251,13 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
         View view = inflater.inflate(R.layout.custom_dialog_list, null);
         builder.setView(view);
 
-        ListView listview = (ListView)view.findViewById(R.id.gameList);
+        ListView listview = (ListView) view.findViewById(R.id.gameList);
         AlertDialog dialog = builder.create();
 
         GameListAdapter adapter = new GameListAdapter(this, R.layout.listitem_game, flag);
 
         // 게임 목록에 아이템 추가
-        for(int i = 1; i <= 5; i++)
+        for (int i = 1; i <= 5; i++)
             adapter.gameList.add(i + "단계");
 
         listview.setAdapter(adapter);
@@ -250,8 +288,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     } else if (position == 3) { // 4단계
                         dialog.dismiss(); // 지금 화면이니까 그냥 다이얼로그 닫음
-                    }
-                    else if(position == 4) { // 5단계
+                    } else if (position == 4) { // 5단계
                         Intent intent = new Intent(getApplicationContext(), A5_Owl.class);
                         intent.putExtra("flag", flag);
                         startActivity(intent);
@@ -264,7 +301,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
         });
 
         // 닫기 버튼
-        TextView listClose = (TextView)view.findViewById(R.id.gameListClose);
+        TextView listClose = (TextView) view.findViewById(R.id.gameListClose);
         listClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -277,18 +314,18 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
     }
 
     // 타이머
-    public void timer(){
+    public void timer() {
         final int MILLISINFUTURE = 60 * 1000; // 총 시간 (60초)
         final int COUNT_DOWN_INTERVAL = 1000; // onTick 메소드를 호출할 간격 (1초)
-        TextView time = (TextView)findViewById(R.id.pizzaTimer);
+        TextView time = (TextView) findViewById(R.id.pizzaTimer);
 
-        new CountDownTimer(MILLISINFUTURE, COUNT_DOWN_INTERVAL){
+        new CountDownTimer(MILLISINFUTURE, COUNT_DOWN_INTERVAL) {
 
             @Override
             public void onTick(long l) {
-                long seconds = l/1000; // 남은 시간
+                long seconds = l / 1000; // 남은 시간
 
-                if(seconds >= 10) // 초가 두 자리 수이면 바로 출력
+                if (seconds >= 10) // 초가 두 자리 수이면 바로 출력
                     time.setText("0:" + seconds);
                 else // 초가 한 자리 수이면 0 붙여서 출력
                     time.setText("0:0" + seconds);
