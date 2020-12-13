@@ -43,6 +43,7 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
     ImageView man, cake, correct;
     Button prevBtn, listBtn, hintBtn;
     int flag;
+    int shakingCnt = 0;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,7 +133,9 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
                 speed = Math.abs(x + y + z - lastX - lastY - lastZ) / gabOfTime * 10000;
 
                 // 쉐이킹 감지
-                if (speed > SHAKE_THRESHOLD) {
+                if (shakingCnt == 0 && speed > SHAKE_THRESHOLD) {
+                    shakingCnt++; // 딱 한 번만 감지하도록 함. 여러 번 감지하면 효과음도 여러 번 나고 다음 액티비티가 여러 개 뜸
+
                     ObjectAnimator animX = ObjectAnimator.ofFloat(cake, "translationX", 80);
                     ObjectAnimator animY = ObjectAnimator.ofFloat(cake, "translationY", -1100);
                     ObjectAnimator animRotation = ObjectAnimator.ofFloat(cake, "rotation", 0f, 380f);
