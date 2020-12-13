@@ -120,7 +120,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
             @Override
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                hintDialog("피자가 어디엔가 숨어있어요.");
+                hintDialog("피자가 어디엔가 더 숨어있어요.");
             }
         });
     }

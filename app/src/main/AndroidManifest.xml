@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.nol">
+    <!-- 진동 사용권한 획득 -->
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -9,10 +12,7 @@
         android:roundIcon="@mipmap/ic_nol_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nol">
-        <activity android:name=".A2_Egg">
 
-        </activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,16 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".A0_Enter" >
-        </activity>
+        <activity android:name=".A0_Enter" />
         <activity android:name=".A1_Rabbit" />
-        <activity android:name=".A3_Birthday">
+        <activity android:name=".A2_Egg" />
+        <activity android:name=".A3_Birthday" />
+        <activity android:name=".A4_Pizza" />
 
-        </activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Base" />
-        <activity android:name=".A4_Pizza">
-
-        </activity>
     </application>
 
 </manifest>
