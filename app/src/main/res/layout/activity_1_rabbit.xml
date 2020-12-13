@@ -16,11 +16,26 @@
         android:textSize="25dp"
         android:textStyle="bold" />
 
+    <!-- 타이머 -->
+    <TextView
+        android:id="@+id/rabbitTimer"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_gravity="top|right"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/timer"
+        android:gravity="center"
+        android:text="1:00"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
     <!-- 게임 내용물 -->
     <ImageView
         android:id="@+id/rabbit"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         android:src="@drawable/rabbit" />
 
@@ -35,7 +50,7 @@
         android:src="@drawable/cookie" />
 
     <ImageView
-        android:id="@+id/correct1"
+        android:id="@+id/rabbitCorrect"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center"

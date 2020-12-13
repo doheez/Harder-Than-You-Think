@@ -4,17 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -35,11 +33,14 @@ public class Egg extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2_egg);
-        correct = (ImageView) findViewById(R.id.correct2);
+        correct = (ImageView) findViewById(R.id.eggCorrect);
         MySoundPlayer.initSounds(getApplicationContext());
 
         Intent intent = getIntent();
         flag = intent.getExtras().getInt("flag");
+
+        // 타이머 시작
+        timer();
 
         // 힌트 보기
         hintBtn = (Button) findViewById(R.id.eggHint);
@@ -224,5 +225,30 @@ public class Egg extends AppCompatActivity {
 
         dialog.setCancelable(false);
         dialog.show();
+    }
+
+    // 타이머
+    public void timer(){
+        final int MILLISINFUTURE = 60 * 1000; // 총 시간 (60초)
+        final int COUNT_DOWN_INTERVAL = 1000; // onTick 메소드를 호출할 간격 (1초)
+        TextView time = (TextView)findViewById(R.id.eggTimer);
+
+        new CountDownTimer(MILLISINFUTURE, COUNT_DOWN_INTERVAL){
+
+            @Override
+            public void onTick(long l) {
+                long seconds = l/1000; // 남은 시간
+
+                if(seconds >= 10) // 초가 두 자리 수이면 바로 출력
+                    time.setText("0:" + seconds);
+                else // 초가 한 자리 수이면 0 붙여서 출력
+                    time.setText("0:0" + seconds);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
     }
 }

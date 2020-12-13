@@ -2,8 +2,6 @@ package com.example.nol;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -12,6 +10,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,7 +57,10 @@ public class Birthday extends AppCompatActivity implements SensorEventListener {
 
         man = (ImageView)findViewById(R.id.man);
         cake = (ImageView)findViewById(R.id.cake);
-        correct = (ImageView)findViewById(R.id.correct3);
+        correct = (ImageView)findViewById(R.id.birthdayCorrect);
+
+        // 타이머 시작
+        timer();
 
         // 이전 단계
         prevBtn = (Button) findViewById(R.id.birthdayPrev);
@@ -244,5 +246,30 @@ public class Birthday extends AppCompatActivity implements SensorEventListener {
 
         dialog.setCancelable(false);
         dialog.show();
+    }
+
+    // 타이머
+    public void timer(){
+        final int MILLISINFUTURE = 60 * 1000; // 총 시간 (60초)
+        final int COUNT_DOWN_INTERVAL = 1000; // onTick 메소드를 호출할 간격 (1초)
+        TextView time = (TextView)findViewById(R.id.birthdayTimer);
+
+        new CountDownTimer(MILLISINFUTURE, COUNT_DOWN_INTERVAL){
+
+            @Override
+            public void onTick(long l) {
+                long seconds = l/1000; // 남은 시간
+
+                if(seconds >= 10) // 초가 두 자리 수이면 바로 출력
+                    time.setText("0:" + seconds);
+                else // 초가 한 자리 수이면 0 붙여서 출력
+                    time.setText("0:0" + seconds);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
     }
 }
