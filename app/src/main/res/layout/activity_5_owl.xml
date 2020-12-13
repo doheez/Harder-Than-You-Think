@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/dotpattern"
+    android:orientation="vertical">
+    <!-- 말풍선 -->
+    <TextView
+        android:layout_width="380dp"
+        android:layout_height="71dp"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bubble"
+        android:gravity="center"
+        android:text="부엉이를 깨워주세요"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <!-- 게임 내용물 -->
+    <ImageView
+        android:id="@+id/owl2"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
+        android:layout_gravity="center"
+        android:src="@drawable/owl_awake" />
+
+    <ImageView
+        android:id="@+id/owl1"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
+        android:layout_gravity="center"
+        android:src="@drawable/owl_sleep" />
+
+    <ImageView
+        android:id="@+id/correct"
+        android:layout_width="232dp"
+        android:layout_height="237dp"
+        android:layout_gravity="center"
+        android:src="@drawable/correct"
+        android:visibility="gone"/>
+
+    <!-- 버튼들-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/owl_Prev"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="이전단계"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/owl_List"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="게임목록"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/owl_Hint"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="힌트보기"
+            android:textSize="15dp" />
+    </LinearLayout>
+</FrameLayout>
