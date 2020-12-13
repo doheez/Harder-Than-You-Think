@@ -153,6 +153,19 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
                             MySoundPlayer.play(MySoundPlayer.CORRECT);
                         }
                     },300);
+
+                    Handler handler2 = new Handler();
+                    handler2.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(getApplicationContext(), A4_Pizza.class);
+                            if(flag == 3) ++flag;
+                            intent.putExtra("flag", flag);
+                            startActivity(intent);
+                            finish();
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        }
+                    },2300);
                 }
 
                 lastX = event.values[DATA_X];
@@ -229,6 +242,13 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
                     }
                     else if(position == 2) {// 3단계
                         dialog.dismiss(); // 지금 화면이니까 그냥 다이얼로그 닫음
+                    }
+                    else if(position == 3) { // 4단계
+                        Intent intent = new Intent(getApplicationContext(), A4_Pizza.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     }
                 }
                 // 회색이면 클릭 불가능

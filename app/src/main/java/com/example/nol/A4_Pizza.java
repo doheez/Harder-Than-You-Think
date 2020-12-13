@@ -21,36 +21,83 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener {
-    ImageView rabbit, cookie, correct;
+public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener {
+    ImageView pizza1, pizza2, pizza2v2, pizza2v3, pizza3, pizza4, pizza5, pizza5v2, pizza6, pizza7, pizza8, pizza8v2;
+    ImageView correct;
+    ImageView add, delete;
+    TextView cnt, submit;
     Button prevBtn, listBtn, hintBtn;
     int flag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_1_rabbit);
+        setContentView(R.layout.activity_4_pizza);
         MySoundPlayer.initSounds(getApplicationContext());
 
         Intent intent = getIntent();
         flag = intent.getExtras().getInt("flag");
 
-        rabbit = (ImageView) findViewById(R.id.rabbit);
-        cookie = (ImageView) findViewById(R.id.cookie);
-        correct = (ImageView) findViewById(R.id.rabbitCorrect);
-
-        cookie.setOnTouchListener(this);
-
         // 타이머 시작
         timer();
 
+        pizza1 = (ImageView) findViewById(R.id.pizza1); pizza1.setOnTouchListener(this);
+        pizza2 = (ImageView) findViewById(R.id.pizza2); pizza2.setOnTouchListener(this);
+        pizza2v2 = (ImageView) findViewById(R.id.pizza2v2); pizza2v2.setOnTouchListener(this);
+        pizza2v3 = (ImageView) findViewById(R.id.pizza2v3); pizza2v3.setOnTouchListener(this);
+        pizza3 = (ImageView) findViewById(R.id.pizza3); pizza3.setOnTouchListener(this);
+        pizza4 = (ImageView) findViewById(R.id.pizza4); pizza4.setOnTouchListener(this);
+        pizza5 = (ImageView) findViewById(R.id.pizza5); pizza5.setOnTouchListener(this);
+        pizza5v2 = (ImageView) findViewById(R.id.pizza5v2); pizza5v2.setOnTouchListener(this);
+        pizza6 = (ImageView) findViewById(R.id.pizza6); pizza6.setOnTouchListener(this);
+        pizza7 = (ImageView) findViewById(R.id.pizza7); pizza7.setOnTouchListener(this);
+        pizza8 = (ImageView) findViewById(R.id.pizza8); pizza8.setOnTouchListener(this);
+        pizza8v2 = (ImageView) findViewById(R.id.pizza8v2); pizza8v2.setOnTouchListener(this);
+        correct = (ImageView) findViewById(R.id.pizzaCorrect);
+        cnt = (TextView) findViewById(R.id.pizzaCnt);
+
+        // 플러스 버튼
+        add = (ImageView) findViewById(R.id.pizzaAdd);
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+                cnt.setText("" + (Integer.parseInt(cnt.getText().toString()) + 1));
+            }
+        });
+
+        // 마이너스 버튼
+        delete = (ImageView) findViewById(R.id.pizzaDelete);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+                if(Integer.parseInt(cnt.getText().toString()) != 0)
+                    cnt.setText("" + (Integer.parseInt(cnt.getText().toString()) - 1));
+            }
+        });
+
+        // 제출 버튼
+        submit = (TextView) findViewById(R.id.pizzaSubmit);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+                if(Integer.parseInt(cnt.getText().toString()) == 12){ // 정답이면
+                    correct.setVisibility(View.VISIBLE);
+                    MySoundPlayer.play(MySoundPlayer.CORRECT);
+                }
+            }
+        });
+
         // 이전 단계
-        prevBtn = (Button) findViewById(R.id.rabbitPrev);
+        prevBtn = (Button) findViewById(R.id.pizzaPrev);
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
+                Intent intent = new Intent(getApplicationContext(), A3_Birthday.class);
+                intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
@@ -58,7 +105,7 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
         });
 
         // 게임 목록
-        listBtn = (Button) findViewById(R.id.rabbitList);
+        listBtn = (Button) findViewById(R.id.pizzaList);
         listBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,12 +115,12 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
         });
 
         // 힌트 보기
-        hintBtn = (Button) findViewById(R.id.rabbitHint);
+        hintBtn = (Button) findViewById(R.id.pizzaHint);
         hintBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                hintDialog("화면에는 토끼가 한 마리만 있는 게 아닙니다.");
+                hintDialog("피자가 어디엔가 숨어있어요.");
             }
         });
     }
@@ -88,7 +135,6 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
         int parentHeight = ((ViewGroup) v.getParent()).getHeight();    // 부모 View 의 Height
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            MySoundPlayer.play(MySoundPlayer.COOKIE);
             // 뷰 누름
             oldXvalue = event.getX();
             oldYvalue = event.getY();
@@ -116,27 +162,6 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
             } else if ((v.getY() + v.getHeight()) > parentHeight) {
                 v.setY(parentHeight - v.getHeight());
             }
-
-            // 토끼 글자 위에서 손을 뗌
-            if (event.getRawX() > 300 && event.getRawX() < 500 && event.getRawY() > 160 && event.getRawY() < 290) {
-                MySoundPlayer.stop(MySoundPlayer.COOKIE);
-                correct.setVisibility(View.VISIBLE);
-                MySoundPlayer.play(MySoundPlayer.CORRECT);
-
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        Intent intent = new Intent(getApplicationContext(), A2_Egg.class);
-                        if(flag == 1) ++flag;
-                        intent.putExtra("flag", flag);
-                        startActivity(intent);
-                        finish();
-                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                    }
-                },2000);
-            }
-            Log.d("viewTest", "x : " + event.getRawX() + " y : " + event.getRawY());
         }
         return true;
     }
@@ -190,30 +215,28 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // 갈색이면 클릭 가능
-                if (position < adapter.flag){
+                if (position < adapter.flag) {
                     MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                    if(position == 0) // 1단계
-                        dialog.dismiss(); // 지금 화면이니까 그냥 다이얼로그 닫음
-                    else if(position == 1) { // 2단계
+                    if (position == 0) { // 1단계
+                        Intent intent = new Intent(getApplicationContext(), A1_Rabbit.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    } else if (position == 1) { // 2단계
                         Intent intent = new Intent(getApplicationContext(), A2_Egg.class);
                         intent.putExtra("flag", flag);
                         startActivity(intent);
                         finish();
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                    }
-                    else if(position == 2) {// 3단계
+                    } else if (position == 2) {// 3단계
                         Intent intent = new Intent(getApplicationContext(), A3_Birthday.class);
                         intent.putExtra("flag", flag);
                         startActivity(intent);
                         finish();
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                    }
-                    else if(position == 3) { // 4단계
-                        Intent intent = new Intent(getApplicationContext(), A4_Pizza.class);
-                        intent.putExtra("flag", flag);
-                        startActivity(intent);
-                        finish();
-                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    } else if (position == 3) { // 4단계
+                        dialog.dismiss(); // 지금 화면이니까 그냥 다이얼로그 닫음
                     }
                 }
                 // 회색이면 클릭 불가능
@@ -237,7 +260,7 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
     public void timer(){
         final int MILLISINFUTURE = 60 * 1000; // 총 시간 (60초)
         final int COUNT_DOWN_INTERVAL = 1000; // onTick 메소드를 호출할 간격 (1초)
-        TextView time = (TextView)findViewById(R.id.rabbitTimer);
+        TextView time = (TextView)findViewById(R.id.pizzaTimer);
 
         new CountDownTimer(MILLISINFUTURE, COUNT_DOWN_INTERVAL){
 

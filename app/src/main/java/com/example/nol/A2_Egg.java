@@ -209,6 +209,13 @@ public class A2_Egg extends AppCompatActivity {
                         finish();
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     }
+                    else if(position == 3) { // 4단계
+                        Intent intent = new Intent(getApplicationContext(), A4_Pizza.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    }
                 }
                 // 회색이면 클릭 불가능
             }
