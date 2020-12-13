@@ -86,6 +86,19 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                 if(Integer.parseInt(cnt.getText().toString()) == 12){ // 정답이면
                     correct.setVisibility(View.VISIBLE);
                     MySoundPlayer.play(MySoundPlayer.CORRECT);
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(getApplicationContext(), A5_Owl.class);
+                            if(flag == 4) ++flag;
+                            intent.putExtra("flag", flag);
+                            startActivity(intent);
+                            finish();
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        }
+                    },2000);
                 }
             }
         });
@@ -237,6 +250,13 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     } else if (position == 3) { // 4단계
                         dialog.dismiss(); // 지금 화면이니까 그냥 다이얼로그 닫음
+                    }
+                    else if(position == 4) { // 5단계
+                        Intent intent = new Intent(getApplicationContext(), A5_Owl.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     }
                 }
                 // 회색이면 클릭 불가능

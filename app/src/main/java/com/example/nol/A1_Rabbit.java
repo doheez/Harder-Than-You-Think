@@ -215,6 +215,13 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
                         finish();
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                     }
+                    else if(position == 4) { // 5단계
+                        Intent intent = new Intent(getApplicationContext(), A5_Owl.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    }
                 }
                 // 회색이면 클릭 불가능
             }

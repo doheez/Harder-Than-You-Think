@@ -5,6 +5,9 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,90 +29,97 @@ import java.util.List;
 
 public class A5_Owl extends AppCompatActivity {
     int brightness;
-    ImageView owl1, owl2, correct;
+    ImageView owlSleep, owlAwake, correct;
     Button prevBtn, listBtn, hintBtn;
-    List<String> gameList = new ArrayList<String>();
-    WindowManager.LayoutParams params;
+    int flag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_5_owl);
+        MySoundPlayer.initSounds(getApplicationContext());
 
-        owl1 = (ImageView) findViewById(R.id.owl1);
-        owl2 = (ImageView) findViewById(R.id.owl2);
-        correct = (ImageView) findViewById(R.id.correct);
+        Intent intent = getIntent();
+        flag = intent.getExtras().getInt("flag");
+
+        // 타이머 시작
+        timer();
+
+        owlSleep = (ImageView) findViewById(R.id.owlSleep);
+        owlAwake = (ImageView) findViewById(R.id.owlAwake);
+        correct = (ImageView) findViewById(R.id.owlCorrect);
 
         // 이전 단계
-        prevBtn = (Button) findViewById(R.id.owl_Prev);
+        prevBtn = (Button) findViewById(R.id.owlPrev);
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
+                MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+                Intent intent = new Intent(getApplicationContext(), A4_Pizza.class);
+                intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
 
-        // 게임 목록에 아이템 추가
-        for(int i = 1; i <= 5; i++)
-            gameList.add(i + "단계");
-
         // 게임 목록
-        listBtn = (Button) findViewById(R.id.owl_List);
+        listBtn = (Button) findViewById(R.id.owlList);
         listBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+                MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 gameListDialog();
             }
         });
 
         // 힌트 보기
-        hintBtn = (Button) findViewById(R.id.owl_Hint);
+        hintBtn = (Button) findViewById(R.id.owlHint);
         hintBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+                MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 hintDialog("부엉이는 야행성입니다.");
             }
         });
 
         Thread thread = new Thread(new detectThread());
         thread.start();
-
     }
 
-    Runnable mRunnable = new Runnable() {
-        @Override
-        public void run() {
-            correct.setVisibility(View.VISIBLE);
-        }
-    };
-
+    // 화면 밝기 조절 감지
     class detectThread implements Runnable {
         @Override
         public void run() {
             try {
-               while(true){
-                   Thread.sleep(3000);
-                   brightness = Settings.System.getInt(getContentResolver(),
-                           Settings.System.SCREEN_BRIGHTNESS);
-                   System.out.println(brightness);
+                while (true) {
+                    Thread.sleep(3000);
+                    brightness = Settings.System.getInt(getContentResolver(),
+                            Settings.System.SCREEN_BRIGHTNESS);
+                    System.out.println(brightness);
 
-                   if(brightness <= 30)
-                   {
-                       owl1.setVisibility(View.INVISIBLE);
-                       break;
-                   }
-               }
+                    if (brightness <= 30) {
+                        owlSleep.setVisibility(View.INVISIBLE);
+                        Message msg = handler.obtainMessage();
+                        handler.sendMessage(msg);
+                        break;
+                    }
+                }
             } catch (Settings.SettingNotFoundException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
+    // 정답 맞춤
+    final Handler handler = new Handler() {
+        public void handleMessage(Message msg){
+            correct.setVisibility(View.VISIBLE);
+            MySoundPlayer.play(MySoundPlayer.CORRECT);
+        }
+    };
+
+    // 힌트 다이얼로그
     public void hintDialog(String text) {
         // 커스텀 다이얼로그를 정의하기위해 Dialog클래스를 생성한다.
         Dialog dialog = new Dialog(this);
@@ -136,6 +146,7 @@ public class A5_Owl extends AppCompatActivity {
         });
     }
 
+    // 게임 목록 다이얼로그
     public void gameListDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -145,14 +156,50 @@ public class A5_Owl extends AppCompatActivity {
         ListView listview = (ListView)view.findViewById(R.id.gameList);
         AlertDialog dialog = builder.create();
 
-        GameListAdapter adapter = new GameListAdapter(this, R.layout.listitem_game);
+        GameListAdapter adapter = new GameListAdapter(this, R.layout.listitem_game, flag);
+
+        // 게임 목록에 아이템 추가
+        for(int i = 1; i <= 5; i++)
+            adapter.gameList.add(i + "단계");
 
         listview.setAdapter(adapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                dialog.dismiss();
+                // 갈색이면 클릭 가능
+                if (position < adapter.flag) {
+                    MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+                    if (position == 0) { // 1단계
+                        Intent intent = new Intent(getApplicationContext(), A1_Rabbit.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    } else if (position == 1) { // 2단계
+                        Intent intent = new Intent(getApplicationContext(), A2_Egg.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    } else if (position == 2) {// 3단계
+                        Intent intent = new Intent(getApplicationContext(), A3_Birthday.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    } else if (position == 3) { // 4단계
+                        Intent intent = new Intent(getApplicationContext(), A4_Pizza.class);
+                        intent.putExtra("flag", flag);
+                        startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                    }
+                    else if(position == 4) { // 5단계
+                        dialog.dismiss(); // 지금 화면이니까 그냥 다이얼로그 닫음
+                    }
+                }
+                // 회색이면 클릭 불가능
             }
         });
 
@@ -166,44 +213,31 @@ public class A5_Owl extends AppCompatActivity {
         });
 
         dialog.setCancelable(false);
-        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
     }
 
-    public class GameListAdapter extends BaseAdapter {
-        Context context;
-        int layout;
-        LayoutInflater inflater;
+    // 타이머
+    public void timer(){
+        final int MILLISINFUTURE = 60 * 1000; // 총 시간 (60초)
+        final int COUNT_DOWN_INTERVAL = 1000; // onTick 메소드를 호출할 간격 (1초)
+        TextView time = (TextView)findViewById(R.id.owlTimer);
 
-        public GameListAdapter(Context context, int layout){
-            this.context = context;
-            this.layout = layout;
-            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        }
+        new CountDownTimer(MILLISINFUTURE, COUNT_DOWN_INTERVAL){
 
-        @Override
-        public int getCount() {
-            return gameList.size();
-        }
+            @Override
+            public void onTick(long l) {
+                long seconds = l/1000; // 남은 시간
 
-        @Override
-        public Object getItem(int i) {
-            return gameList.get(i);
-        }
+                if(seconds >= 10) // 초가 두 자리 수이면 바로 출력
+                    time.setText("0:" + seconds);
+                else // 초가 한 자리 수이면 0 붙여서 출력
+                    time.setText("0:0" + seconds);
+            }
 
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
+            @Override
+            public void onFinish() {
 
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            if(view == null)
-                view = inflater.inflate(layout, null);
-
-            TextView listStep = (TextView)view.findViewById(R.id.gameListStep);
-            listStep.setText(gameList.get(i));
-            return view;
-        }
+            }
+        }.start();
     }
 }

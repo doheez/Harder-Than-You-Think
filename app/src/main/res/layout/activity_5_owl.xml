@@ -12,27 +12,42 @@
         android:layout_marginTop="15dp"
         android:background="@drawable/bubble"
         android:gravity="center"
-        android:text="부엉이를 깨워주세요"
+        android:text="잠 자는 부엉이를 깨워주세요"
         android:textSize="25dp"
         android:textStyle="bold" />
 
+    <!-- 타이머 -->
+    <TextView
+        android:id="@+id/owlTimer"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_gravity="top|right"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/timer"
+        android:gravity="center"
+        android:text="1:00"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
     <!-- 게임 내용물 -->
     <ImageView
-        android:id="@+id/owl2"
+        android:id="@+id/owlAwake"
         android:layout_width="330dp"
         android:layout_height="330dp"
         android:layout_gravity="center"
         android:src="@drawable/owl_awake" />
 
     <ImageView
-        android:id="@+id/owl1"
+        android:id="@+id/owlSleep"
         android:layout_width="330dp"
         android:layout_height="330dp"
         android:layout_gravity="center"
         android:src="@drawable/owl_sleep" />
 
     <ImageView
-        android:id="@+id/correct"
+        android:id="@+id/owlCorrect"
         android:layout_width="232dp"
         android:layout_height="237dp"
         android:layout_gravity="center"
@@ -49,7 +64,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/owl_Prev"
+            android:id="@+id/owlPrev"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_marginHorizontal="5dp"
@@ -58,7 +73,7 @@
             android:textSize="15dp" />
 
         <Button
-            android:id="@+id/owl_List"
+            android:id="@+id/owlList"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_marginHorizontal="5dp"
@@ -67,7 +82,7 @@
             android:textSize="15dp" />
 
         <Button
-            android:id="@+id/owl_Hint"
+            android:id="@+id/owlHint"
             android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_marginHorizontal="5dp"
