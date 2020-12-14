@@ -28,6 +28,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.nol.A0_Enter.mediaPlayer;
+
 public class A5_Owl extends AppCompatActivity {
     int brightness;
     ImageView owlSleep, owlAwake, correct;
@@ -46,7 +48,7 @@ public class A5_Owl extends AppCompatActivity {
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.owlTimer);
-        new Timer(this, time).startTimer();
+        new Timer(this, this, time).startTimer();
 
         owlSleep = (ImageView) findViewById(R.id.owlSleep);
         owlAwake = (ImageView) findViewById(R.id.owlAwake);
@@ -129,4 +131,9 @@ public class A5_Owl extends AppCompatActivity {
             MySoundPlayer.play(MySoundPlayer.CORRECT);
         }
     };
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
+    }
 }

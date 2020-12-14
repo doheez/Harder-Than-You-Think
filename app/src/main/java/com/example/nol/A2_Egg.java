@@ -24,6 +24,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.nol.A0_Enter.mediaPlayer;
+
 public class A2_Egg extends AppCompatActivity {
     private ImageView imageView, correct;
     Button prevBtn, listBtn, hintBtn;
@@ -45,7 +47,7 @@ public class A2_Egg extends AppCompatActivity {
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.eggTimer);
-        new Timer(this, time).startTimer();
+        new Timer(this, this, time).startTimer();
 
         // 힌트 보기
         hintBtn = (Button) findViewById(R.id.eggHint);
@@ -138,5 +140,10 @@ public class A2_Egg extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
     }
 }

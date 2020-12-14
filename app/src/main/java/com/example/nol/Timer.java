@@ -1,6 +1,8 @@
 package com.example.nol;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.widget.TextView;
@@ -10,9 +12,11 @@ import androidx.core.content.ContextCompat;
 public class Timer {
     private TextView time;
     private Context context;
+    private Activity activity;
 
     // 생성자
-    public Timer(Context context, TextView time){
+    public Timer(Activity activity, Context context, TextView time){
+        this.activity = activity;
         this.context = context;
         this.time = time;
     }
@@ -48,7 +52,10 @@ public class Timer {
 
             @Override
             public void onFinish() {
-
+                Intent intent = new Intent(context, AX_Timeover.class);
+                context.startActivity(intent);
+                activity.finish();
+                activity.overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         }.start();
     }

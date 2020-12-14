@@ -29,6 +29,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.example.nol.A0_Enter.mediaPlayer;
+
 public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener {
     ImageView pizza1, pizza2, pizza2v2, pizza2v3, pizza3, pizza4, pizza5, pizza5v2, pizza6, pizza7, pizza8, pizza8v2;
     ImageView correct;
@@ -49,7 +51,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.pizzaTimer);
-        new Timer(this, time).startTimer();
+        new Timer(this, this, time).startTimer();
 
         pizza1 = (ImageView) findViewById(R.id.pizza1);
         pizza1.setDrawingCacheEnabled(true);
@@ -218,5 +220,10 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
             }
         }
         return true;
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
     }
 }

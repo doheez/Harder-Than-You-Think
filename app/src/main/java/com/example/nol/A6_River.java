@@ -16,6 +16,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.example.nol.A0_Enter.mediaPlayer;
+
 public class A6_River extends AppCompatActivity implements View.OnTouchListener{
     ImageView river, board, correct;
     Button prevBtn, listBtn, hintBtn;
@@ -39,7 +41,7 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.riverTimer);
-        new Timer(time).startTimer();
+        new Timer(this, this, time).startTimer();
 
         // 이전 단계
         prevBtn = (Button) findViewById(R.id.riverPrev);
@@ -117,5 +119,10 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
             Log.d("viewTest", "x : " + event.getRawX() + " y : " + event.getRawY());
         }
         return true;
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
     }
 }

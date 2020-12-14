@@ -24,6 +24,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.example.nol.A0_Enter.mediaPlayer;
+
 public class A3_Birthday extends AppCompatActivity implements SensorEventListener {
 
     Activity activity = A3_Birthday.this;
@@ -65,7 +67,7 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.birthdayTimer);
-        new Timer(this, time).startTimer();
+        new Timer(this, this, time).startTimer();
 
         // 이전 단계
         prevBtn = (Button) findViewById(R.id.birthdayPrev);
@@ -181,5 +183,10 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
                 lastZ = event.values[DATA_Z];
             }
         }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
     }
 }
