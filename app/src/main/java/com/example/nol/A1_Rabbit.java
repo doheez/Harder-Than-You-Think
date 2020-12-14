@@ -73,7 +73,7 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 LayoutInflater inflater = getLayoutInflater();
-                new CustomDialog(A1_Rabbit.this, activity, inflater, flag, 1).gameListDialog();
+                new CustomDialog(A1_Rabbit.this, activity, inflater, flag, 1, timer).gameListDialog();
             }
         });
 

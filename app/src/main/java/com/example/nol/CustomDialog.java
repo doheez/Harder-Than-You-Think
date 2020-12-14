@@ -19,17 +19,19 @@ public class CustomDialog {
     LayoutInflater inflater;
     int flag; // 게임 목록에서 몇 단계까지 터치할 수 있는가
     int whatAmI; // 현재 액티비티는 몇 단계인가
+    Timer timer;
 
     public CustomDialog(Context context){
         this.context = context;
     }
 
-    public CustomDialog(Context context, Activity activity, LayoutInflater inflater, int flag, int whatAmI){
+    public CustomDialog(Context context, Activity activity, LayoutInflater inflater, int flag, int whatAmI, Timer timer){
         this.context = context;
         this.activity = activity;
         this.inflater = inflater;
         this.flag = flag;
         this.whatAmI = whatAmI;
+        this.timer = timer;
     }
 
     // 힌트 다이얼로그
@@ -131,6 +133,7 @@ public class CustomDialog {
                     // 인텐트 생성 후 공통으로 실행하는 부분
                     intent.putExtra("flag", flag);
                     context.startActivity(intent);
+                    timer.countDownTimer.cancel();
                     activity.finish();
                     activity.overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 }

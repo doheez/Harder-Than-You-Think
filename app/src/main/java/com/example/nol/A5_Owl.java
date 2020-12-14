@@ -78,7 +78,7 @@ public class A5_Owl extends AppCompatActivity {
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 LayoutInflater inflater = getLayoutInflater();
-                new CustomDialog(A5_Owl.this, activity, inflater, flag, 5).gameListDialog();
+                new CustomDialog(A5_Owl.this, activity, inflater, flag, 5, timer).gameListDialog();
             }
         });
 

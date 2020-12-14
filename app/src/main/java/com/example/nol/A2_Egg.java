@@ -83,7 +83,7 @@ public class A2_Egg extends AppCompatActivity {
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 LayoutInflater inflater = getLayoutInflater();
-                new CustomDialog(A2_Egg.this, activity, inflater, flag, 2).gameListDialog();
+                new CustomDialog(A2_Egg.this, activity, inflater, flag, 2, timer).gameListDialog();
             }
         });
 

@@ -71,7 +71,7 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 LayoutInflater inflater = getLayoutInflater();
-                new CustomDialog(A6_River.this, activity, inflater, flag, 6).gameListDialog();
+                new CustomDialog(A6_River.this, activity, inflater, flag, 6, timer).gameListDialog();
             }
         });
 

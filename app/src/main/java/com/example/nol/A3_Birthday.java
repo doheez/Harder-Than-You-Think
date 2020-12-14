@@ -93,7 +93,7 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 LayoutInflater inflater = getLayoutInflater();
-                new CustomDialog(A3_Birthday.this, activity, inflater, flag, 3).gameListDialog();
+                new CustomDialog(A3_Birthday.this, activity, inflater, flag, 3, timer).gameListDialog();
             }
         });
 
