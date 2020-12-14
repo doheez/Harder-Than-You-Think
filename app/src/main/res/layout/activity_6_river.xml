@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/dotpattern"
+    android:orientation="vertical">
+    <!-- 말풍선 -->
+    <TextView
+        android:layout_width="380dp"
+        android:layout_height="71dp"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/bubble"
+        android:gravity="center"
+        android:text="강에 다리를 놓아주세요"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <!-- 타이머 -->
+    <TextView
+        android:id="@+id/riverTimer"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_gravity="top|right"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/timer"
+        android:gravity="center"
+        android:text="1:00"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+    <!-- 게임 내용물 -->
+    <ImageView
+        android:id="@+id/river"
+        android:layout_width="451dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:tint="#33FFFFFF"
+        android:src="@drawable/river"
+        tools:ignore="UseAppTint" />
+
+    <ImageView
+        android:id="@+id/board"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_gravity="center"
+        android:src="@drawable/board" />
+
+    <ImageView
+        android:id="@+id/riverCorrect"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@drawable/correct"
+        android:visibility="gone" />
+
+    <!-- 버튼들-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/riverPrev"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="이전단계"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/riverList"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="게임목록"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/riverHint"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:layout_marginHorizontal="5dp"
+            android:gravity="center"
+            android:text="힌트보기"
+            android:textSize="15dp" />
+    </LinearLayout>
+</FrameLayout>

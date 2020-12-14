@@ -30,9 +30,8 @@
         <activity android:name=".A3_Birthday" />
         <activity android:name=".A4_Pizza" />
         <activity android:name=".A5_Owl"/>
-
+        <activity android:name=".A6_River"/>
         <activity android:name=".MainActivity" />
-        <activity android:name=".Base" />
     </application>
 
 </manifest>
