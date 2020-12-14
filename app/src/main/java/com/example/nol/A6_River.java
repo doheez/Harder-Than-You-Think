@@ -17,6 +17,8 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.example.nol.A0_Enter.mediaPlayer;
+
 public class A6_River extends AppCompatActivity implements View.OnTouchListener{
     ImageView river, board, correct;
     Button prevBtn, listBtn, hintBtn;
@@ -24,6 +26,7 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
     Activity activity = A6_River.this;
     private ScaleGestureDetector mScaleGestureDetector;
     private float mScaleFactor = 1.0f;
+    Timer timer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +46,8 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.riverTimer);
-        new Timer(time).startTimer();
+        timer = new Timer(this,this, time);
+        timer.startTimer();
 
         // 이전 단계
         prevBtn = (Button) findViewById(R.id.riverPrev);
@@ -54,6 +58,7 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
                 Intent intent = new Intent(getApplicationContext(), A5_Owl.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
+                timer.countDownTimer.cancel();
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
@@ -135,7 +140,7 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
 
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
-        public boolean onScale(ScaleGestureDetector scaleGestureDetector){
+        public boolean onScale(ScaleGestureDetector scaleGestureDetector) {
             // ScaleGestureDetector에서 factor를 받아 변수로 선언한 factor에 넣고
             mScaleFactor *= scaleGestureDetector.getScaleFactor();
 
@@ -149,5 +154,13 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
 
             return true;
         }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
+
     }
 }

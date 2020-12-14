@@ -20,6 +20,7 @@ public class MySoundPlayer {
     public static final int BUTTON_SOUND = R.raw.button_sound;
     public static final int CAKE = R.raw.cake;
     public static final int POUR_SOUND = R.raw.pour_sound;
+    public static final int TIMEOVER = R.raw.timeover;
 
     private static int ret;
     private static SoundPool soundPool;
@@ -43,7 +44,7 @@ public class MySoundPlayer {
         soundPoolMap.put(COOKIE, soundPool.load(context, COOKIE, 1));
         soundPoolMap.put(CAKE, soundPool.load(context, CAKE, 1));
         soundPoolMap.put(POUR_SOUND, soundPool.load(context, POUR_SOUND, 1));
-
+        soundPoolMap.put(TIMEOVER, soundPool.load(context, TIMEOVER, 1));
     }
 
     public static void play(int raw_id) {

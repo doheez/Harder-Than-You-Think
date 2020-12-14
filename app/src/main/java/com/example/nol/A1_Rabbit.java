@@ -22,12 +22,15 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import static com.example.nol.A0_Enter.mediaPlayer;
+
 public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener {
     ImageView rabbit, cookie, correct;
     Button prevBtn, listBtn, hintBtn;
     int flag;
     Activity activity = A1_Rabbit.this;
     TextView time;
+    Timer timer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,7 +49,10 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
 
         // 타이머 시작
         time = (TextView) findViewById(R.id.rabbitTimer);
-        new Timer(time).startTimer();
+        new Timer(this, this, time).startTimer();
+        TextView time = (TextView) findViewById(R.id.rabbitTimer);
+        timer = new Timer(this,this, time);
+        timer.startTimer();
 
         // 이전 단계
         prevBtn = (Button) findViewById(R.id.rabbitPrev);
@@ -57,6 +63,7 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
                 Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
+                timer.countDownTimer.cancel();
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
@@ -128,6 +135,7 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
                 MySoundPlayer.stop(MySoundPlayer.COOKIE);
                 correct.setVisibility(View.VISIBLE);
                 MySoundPlayer.play(MySoundPlayer.CORRECT);
+                timer.countDownTimer.cancel();
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -145,5 +153,10 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
             Log.d("viewTest", "x : " + event.getRawX() + " y : " + event.getRawY());
         }
         return true;
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
     }
 }

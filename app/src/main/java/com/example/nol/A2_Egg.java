@@ -24,6 +24,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.nol.A0_Enter.mediaPlayer;
+
 public class A2_Egg extends AppCompatActivity {
     private ImageView imageView, correct;
     Button prevBtn, listBtn, hintBtn;
@@ -32,6 +34,7 @@ public class A2_Egg extends AppCompatActivity {
     Drawable drawable; // 대리자를 선언합니다
     List<String> gameList = new ArrayList<String>();
     Activity activity = A2_Egg.this;
+    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,8 @@ public class A2_Egg extends AppCompatActivity {
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.eggTimer);
-        new Timer(time).startTimer();
+        timer = new Timer(this,this, time);
+        timer.startTimer();
 
         // 힌트 보기
         hintBtn = (Button) findViewById(R.id.eggHint);
@@ -66,14 +70,11 @@ public class A2_Egg extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), A1_Rabbit.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
+                timer.countDownTimer.cancel();
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
         });
-
-        // 게임 목록에 아이템 추가
-        for (int i = 1; i <= 5; i++)
-            gameList.add(i + "단계");
 
         // 게임 목록
         listBtn = (Button) findViewById(R.id.eggList);
@@ -114,6 +115,8 @@ public class A2_Egg extends AppCompatActivity {
                     MySoundPlayer.play(MySoundPlayer.CHICKEN);
                     drawable = getResources().getDrawable(R.drawable.chicken);
                     imageView.setImageDrawable(drawable); // 이미지를 적용합니다
+                    timer.countDownTimer.cancel();
+
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
@@ -138,5 +141,10 @@ public class A2_Egg extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
     }
 }

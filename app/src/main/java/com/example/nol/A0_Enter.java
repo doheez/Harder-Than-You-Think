@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class A0_Enter extends AppCompatActivity {
     private Button start, explain, info;
-    MediaPlayer mediaPlayer;
+    public static MediaPlayer mediaPlayer;
     int flag;
 
     @Override
@@ -107,5 +107,11 @@ public class A0_Enter extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
     }
 }
