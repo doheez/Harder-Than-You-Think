@@ -51,6 +51,7 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
+                intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
@@ -192,36 +193,24 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
                 // 갈색이면 클릭 가능
                 if (position < adapter.flag){
                     MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                    if(position == 0) // 1단계
+
+                    // 여기서 초기화 안 해주면 공통 부분 실행 안 됨
+                    Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
+
+                    if(position == 0) { // 1단계
                         dialog.dismiss(); // 지금 화면이니까 그냥 다이얼로그 닫음
-                    else if(position == 1) { // 2단계
-                        Intent intent = new Intent(getApplicationContext(), A2_Egg.class);
-                        intent.putExtra("flag", flag);
-                        startActivity(intent);
-                        finish();
-                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        return;
                     }
-                    else if(position == 2) {// 3단계
-                        Intent intent = new Intent(getApplicationContext(), A3_Birthday.class);
-                        intent.putExtra("flag", flag);
-                        startActivity(intent);
-                        finish();
-                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                    }
-                    else if(position == 3) { // 4단계
-                        Intent intent = new Intent(getApplicationContext(), A4_Pizza.class);
-                        intent.putExtra("flag", flag);
-                        startActivity(intent);
-                        finish();
-                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                    }
-                    else if(position == 4) { // 5단계
-                        Intent intent = new Intent(getApplicationContext(), A5_Owl.class);
-                        intent.putExtra("flag", flag);
-                        startActivity(intent);
-                        finish();
-                        overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-                    }
+                    else if(position == 1) intent = new Intent(getApplicationContext(), A2_Egg.class); // 2단계
+                    else if(position == 2) intent = new Intent(getApplicationContext(), A3_Birthday.class); // 3단계
+                    else if(position == 3) intent = new Intent(getApplicationContext(), A4_Pizza.class); // 4단계
+                    else if(position == 4) intent = new Intent(getApplicationContext(), A5_Owl.class); // 5단계
+
+                    // 인텐트 생성 후 공통으로 실행하는 부분
+                    intent.putExtra("flag", flag);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                 }
                 // 회색이면 클릭 불가능
             }

@@ -15,12 +15,16 @@ import androidx.appcompat.app.AppCompatActivity;
 public class A0_Enter extends AppCompatActivity {
     private Button start, explain, info;
     MediaPlayer mediaPlayer;
+    int flag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_0_enter);
         MySoundPlayer.initSounds(getApplicationContext());
+
+        Intent intent = getIntent();
+        flag = intent.getExtras().getInt("flag");
 
         mediaPlayer = MediaPlayer.create(this,R.raw.backgroundmusic);
         mediaPlayer.setLooping(true);
@@ -38,7 +42,7 @@ public class A0_Enter extends AppCompatActivity {
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 Intent intent = new Intent(getApplicationContext(), A1_Rabbit.class);
-                intent.putExtra("flag", 1);
+                intent.putExtra("flag", flag);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
