@@ -109,6 +109,13 @@ public class A5_Owl extends AppCompatActivity {
                         break;
                     }
                 }
+                Thread.sleep(2000);
+                Intent intent = new Intent(getApplicationContext(), A6_River.class);
+                if (flag == 5) ++flag;
+                intent.putExtra("flag", flag);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             } catch (Settings.SettingNotFoundException | InterruptedException e) {
                 e.printStackTrace();
             }
