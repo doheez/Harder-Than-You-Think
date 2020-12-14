@@ -13,6 +13,7 @@ public class Timer {
     private TextView time;
     private Context context;
     private Activity activity;
+    public CountDownTimer countDownTimer;
 
     // 생성자
     public Timer(Activity activity, Context context, TextView time){
@@ -26,7 +27,7 @@ public class Timer {
         final int MILLISINFUTURE = 15 * 1000; // 총 시간 (60초)
         final int COUNT_DOWN_INTERVAL = 1000; // onTick 메소드를 호출할 간격 (1초)
 
-        new CountDownTimer(MILLISINFUTURE, COUNT_DOWN_INTERVAL){
+        countDownTimer = new CountDownTimer(MILLISINFUTURE, COUNT_DOWN_INTERVAL){
 
             @Override
             public void onTick(long l) {

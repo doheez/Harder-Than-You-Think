@@ -23,6 +23,7 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
     Button prevBtn, listBtn, hintBtn;
     int flag;
     Activity activity = A6_River.this;
+    Timer timer;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +42,8 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.riverTimer);
-        new Timer(this, this, time).startTimer();
+        timer = new Timer(this,this, time);
+        timer.startTimer();
 
         // 이전 단계
         prevBtn = (Button) findViewById(R.id.riverPrev);
@@ -52,6 +54,7 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
                 Intent intent = new Intent(getApplicationContext(), A5_Owl.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
+                timer.countDownTimer.cancel();
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }

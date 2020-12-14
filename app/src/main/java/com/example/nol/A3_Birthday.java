@@ -49,6 +49,7 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
     Button prevBtn, listBtn, hintBtn;
     int flag;
     int shakingCnt = 0;
+    Timer timer;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +68,8 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.birthdayTimer);
-        new Timer(this, this, time).startTimer();
+        timer = new Timer(this,this, time);
+        timer.startTimer();
 
         // 이전 단계
         prevBtn = (Button) findViewById(R.id.birthdayPrev);
@@ -78,6 +80,7 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
                 Intent intent = new Intent(getApplicationContext(), A2_Egg.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
+                timer.countDownTimer.cancel();
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
@@ -161,6 +164,7 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
                             man.setImageResource(R.drawable.birthday2);
                             correct.setVisibility(View.VISIBLE);
                             MySoundPlayer.play(MySoundPlayer.CORRECT);
+                            timer.countDownTimer.cancel();
                         }
                     },300);
 

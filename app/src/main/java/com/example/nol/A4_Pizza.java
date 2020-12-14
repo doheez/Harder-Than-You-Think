@@ -39,6 +39,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
     Button prevBtn, listBtn, hintBtn;
     int flag;
     Activity activity = A4_Pizza.this;
+    Timer timer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +52,8 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.pizzaTimer);
-        new Timer(this, this, time).startTimer();
+        timer = new Timer(this,this, time);
+        timer.startTimer();
 
         pizza1 = (ImageView) findViewById(R.id.pizza1);
         pizza1.setDrawingCacheEnabled(true);
@@ -131,6 +133,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                             if (flag == 4) ++flag;
                             intent.putExtra("flag", flag);
                             startActivity(intent);
+                            timer.countDownTimer.cancel();
                             finish();
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         }
@@ -148,6 +151,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                 Intent intent = new Intent(getApplicationContext(), A3_Birthday.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
+                timer.countDownTimer.cancel();
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }

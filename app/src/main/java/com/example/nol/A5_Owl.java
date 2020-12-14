@@ -36,6 +36,7 @@ public class A5_Owl extends AppCompatActivity {
     Button prevBtn, listBtn, hintBtn;
     int flag;
     Activity activity = A5_Owl.this;
+    Timer timer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +49,8 @@ public class A5_Owl extends AppCompatActivity {
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.owlTimer);
-        new Timer(this, this, time).startTimer();
+        timer = new Timer(this,this, time);
+        timer.startTimer();
 
         owlSleep = (ImageView) findViewById(R.id.owlSleep);
         owlAwake = (ImageView) findViewById(R.id.owlAwake);
@@ -63,6 +65,7 @@ public class A5_Owl extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), A4_Pizza.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
                 startActivity(intent);
+                timer.countDownTimer.cancel();
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             }
@@ -129,6 +132,7 @@ public class A5_Owl extends AppCompatActivity {
         public void handleMessage(Message msg){
             correct.setVisibility(View.VISIBLE);
             MySoundPlayer.play(MySoundPlayer.CORRECT);
+            timer.countDownTimer.cancel();
         }
     };
     @Override
