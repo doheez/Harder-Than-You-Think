@@ -26,9 +26,13 @@ public class A0_Enter extends AppCompatActivity {
         Intent intent = getIntent();
         flag = intent.getExtras().getInt("flag");
 
-        mediaPlayer = MediaPlayer.create(this,R.raw.backgroundmusic);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
+        // 최초 실행 시에만 배경음악 생성함
+        // 게임화면 -> 이전단계 -> Enter화면으로 되돌아왔을 때는 음악 생성 X
+        if (flag == 0) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.backgroundmusic);
+            mediaPlayer.setLooping(true);
+            mediaPlayer.start();
+        }
 
         start = (Button)findViewById(R.id.enterStart);
         explain = (Button)findViewById(R.id.enterExplain);
@@ -42,6 +46,7 @@ public class A0_Enter extends AppCompatActivity {
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 Intent intent = new Intent(getApplicationContext(), A1_Rabbit.class);
+                if(flag == 0) ++flag;
                 intent.putExtra("flag", flag);
                 startActivity(intent);
                 finish();

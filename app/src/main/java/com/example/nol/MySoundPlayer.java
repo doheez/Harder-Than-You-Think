@@ -30,11 +30,7 @@ public class MySoundPlayer {
                 .setUsage(AudioAttributes.USAGE_GAME)
                 .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                 .build();
-        soundPool = new SoundPool(3,AudioManager.STREAM_MUSIC,1);
-
-
-
-
+        soundPool = new SoundPool.Builder().setAudioAttributes(attributes).build();
 
         soundPoolMap = new HashMap(2);
         soundPoolMap.put(CRACK, soundPool.load(context, CRACK, 1));

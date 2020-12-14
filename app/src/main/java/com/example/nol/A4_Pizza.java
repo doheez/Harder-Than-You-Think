@@ -180,10 +180,10 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
         int parentHeight = ((ViewGroup) v.getParent()).getHeight();    // 부모 View 의 Height
 
         // 투명 영역 터치 안 되게
-        Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
-        int color = bmp.getPixel((int) event.getX(), (int) event.getY());
-        if (color == Color.TRANSPARENT)
-            return false;
+        //Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
+        //int color = bmp.getPixel((int) event.getX(), (int) event.getY());
+        //if (color == Color.TRANSPARENT)
+        //    return false;
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // 뷰 누름

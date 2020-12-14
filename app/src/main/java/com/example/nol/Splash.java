@@ -18,7 +18,7 @@ public class Splash extends Activity {
             @Override
             public void run() {
                 Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
-                intent.putExtra("flag", 1);
+                intent.putExtra("flag", 0);
                 startActivity(intent);
                 finish();
             }
