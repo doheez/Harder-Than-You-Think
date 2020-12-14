@@ -27,6 +27,7 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
     Button prevBtn, listBtn, hintBtn;
     int flag;
     Activity activity = A1_Rabbit.this;
+    TextView time;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
         cookie.setOnTouchListener(this);
 
         // 타이머 시작
-        TextView time = (TextView) findViewById(R.id.rabbitTimer);
+        time = (TextView) findViewById(R.id.rabbitTimer);
         new Timer(time).startTimer();
 
         // 이전 단계

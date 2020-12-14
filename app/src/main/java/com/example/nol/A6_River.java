@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +22,8 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
     Button prevBtn, listBtn, hintBtn;
     int flag;
     Activity activity = A6_River.this;
+    private ScaleGestureDetector mScaleGestureDetector;
+    private float mScaleFactor = 1.0f;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
         correct = (ImageView) findViewById(R.id.riverCorrect);
 
         board.setOnTouchListener(this);
+        mScaleGestureDetector = new ScaleGestureDetector(this, new ScaleListener());
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.riverTimer);
@@ -83,16 +87,12 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         int parentWidth = ((ViewGroup) v.getParent()).getWidth();    // 부모 View 의 Width
-        int parentHeight = ((ViewGroup) v.getParent()).getHeight();    // 부모 View 의 Height
+        int parentHeight = ((ViewGroup) v.getParent()).getHeight();
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // 뷰 누름
             oldXvalue = event.getX();
             oldYvalue = event.getY();
-            Log.d("viewTest", "oldXvalue : " + oldXvalue + " oldYvalue : " + oldYvalue);    // View 내부에서 터치한 지점의 상대 좌표값.
-            Log.d("viewTest", "v.getX() : " + v.getX());    // View 의 좌측 상단이 되는 지점의 절대 좌표값.
-            Log.d("viewTest", "RawX : " + event.getRawX() + " RawY : " + event.getRawY());    // View 를 터치한 지점의 절대 좌표값.
-            Log.d("viewTest", "v.getHeight : " + v.getHeight() + " v.getWidth : " + v.getWidth());    // View 의 Width, Height
 
         } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
             // 뷰 이동 중
@@ -114,8 +114,40 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
                 v.setY(parentHeight - v.getHeight());
             }
 
+            if(event.getRawY() > 1100 && event.getRawY() < 1200)
+                if(board.getScaleX() > 2.0 && board.getScaleY() > 2.0) {
+                    correct.setVisibility(View.VISIBLE);
+                    MySoundPlayer.play(MySoundPlayer.CORRECT);
+                }// 부모 View 의 Height
+
             Log.d("viewTest", "x : " + event.getRawX() + " y : " + event.getRawY());
+            Log.d("viewTest", "height : " + board.getScaleX() + " width : " + board.getScaleY());
         }
         return true;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        //변수로 선언해 놓은 ScaleGestureDetector
+        mScaleGestureDetector.onTouchEvent(motionEvent);
+        return true;
+    }
+
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector scaleGestureDetector){
+            // ScaleGestureDetector에서 factor를 받아 변수로 선언한 factor에 넣고
+            mScaleFactor *= scaleGestureDetector.getScaleFactor();
+
+            // 최대 10배, 최소 10배 줌 한계 설정
+            mScaleFactor = Math.max(0.1f,
+                    Math.min(mScaleFactor, 10.0f));
+
+            // 이미지뷰 스케일에 적용
+            board.setScaleX(mScaleFactor);
+            board.setScaleY(mScaleFactor);
+
+            return true;
+        }
     }
 }
