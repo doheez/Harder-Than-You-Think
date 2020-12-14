@@ -124,6 +124,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                 if (Integer.parseInt(cnt.getText().toString()) == 12) { // 정답이면
                     correct.setVisibility(View.VISIBLE);
                     MySoundPlayer.play(MySoundPlayer.CORRECT);
+                    timer.countDownTimer.cancel();
 
                     Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
@@ -133,7 +134,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                             if (flag == 4) ++flag;
                             intent.putExtra("flag", flag);
                             startActivity(intent);
-                            timer.countDownTimer.cancel();
+
                             finish();
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         }

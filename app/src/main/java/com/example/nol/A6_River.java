@@ -122,6 +122,7 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
             if(event.getRawY() > 1100 && event.getRawY() < 1200)
                 if(board.getScaleX() > 2.0 && board.getScaleY() > 2.0) {
                     correct.setVisibility(View.VISIBLE);
+                    timer.countDownTimer.cancel();
                     MySoundPlayer.play(MySoundPlayer.CORRECT);
                 }// 부모 View 의 Height
 
