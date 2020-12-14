@@ -65,7 +65,7 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.birthdayTimer);
-        new Timer(time).startTimer();
+        new Timer(this, time).startTimer();
 
         // 이전 단계
         prevBtn = (Button) findViewById(R.id.birthdayPrev);

@@ -45,7 +45,7 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.rabbitTimer);
-        new Timer(time).startTimer();
+        new Timer(this, time).startTimer();
 
         // 이전 단계
         prevBtn = (Button) findViewById(R.id.rabbitPrev);

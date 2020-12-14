@@ -46,7 +46,7 @@ public class A5_Owl extends AppCompatActivity {
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.owlTimer);
-        new Timer(time).startTimer();
+        new Timer(this, time).startTimer();
 
         owlSleep = (ImageView) findViewById(R.id.owlSleep);
         owlAwake = (ImageView) findViewById(R.id.owlAwake);

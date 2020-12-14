@@ -45,7 +45,7 @@ public class A2_Egg extends AppCompatActivity {
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.eggTimer);
-        new Timer(time).startTimer();
+        new Timer(this, time).startTimer();
 
         // 힌트 보기
         hintBtn = (Button) findViewById(R.id.eggHint);

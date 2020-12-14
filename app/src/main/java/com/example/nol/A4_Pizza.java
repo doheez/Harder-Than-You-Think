@@ -49,7 +49,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.pizzaTimer);
-        new Timer(time).startTimer();
+        new Timer(this, time).startTimer();
 
         pizza1 = (ImageView) findViewById(R.id.pizza1);
         pizza1.setDrawingCacheEnabled(true);
