@@ -6,12 +6,17 @@
     android:background="@drawable/splash_background"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="410dp"
+        android:layout_height="200dp"
+        android:src="@drawable/party2"
+        android:layout_gravity="top"/>
     <TextView
         android:id="@+id/box"
         android:layout_width="350dp"
         android:layout_height="220dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="170dp"
+        android:layout_marginBottom="150dp"
         android:background="@drawable/box"
         android:gravity="center"
         android:text="test"
