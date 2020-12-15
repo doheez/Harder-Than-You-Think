@@ -73,7 +73,7 @@ public class CustomDialog {
         GameListAdapter adapter = new GameListAdapter(context, R.layout.listitem_game, flag);
 
         // 게임 목록에 아이템 추가
-        for(int i = 1; i <= 6; i++)
+        for(int i = 1; i <= 7; i++)
             adapter.gameList.add(i + "단계");
 
         listview.setAdapter(adapter);
@@ -128,6 +128,12 @@ public class CustomDialog {
                             dialog.dismiss();
                             return;
                         } else intent = new Intent(context, A6_River.class);
+                    }
+                    else if(position == 6) { // 7단계
+                        if (whatAmI == 7) {
+                            dialog.dismiss();
+                            return;
+                        } else intent = new Intent(context, A7_Drink.class);
                     }
 
                     // 인텐트 생성 후 공통으로 실행하는 부분

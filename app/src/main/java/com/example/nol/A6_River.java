@@ -1,5 +1,7 @@
 package com.example.nol;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import static com.example.nol.A0_Enter.mediaPlayer;
+import static java.lang.Thread.sleep;
 
 public class A6_River extends AppCompatActivity implements View.OnTouchListener{
     ImageView river, board, correct;
@@ -122,8 +125,28 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
             if(event.getRawY() > 1100 && event.getRawY() < 1200)
                 if(board.getScaleX() > 2.0 && board.getScaleY() > 2.0) {
                     correct.setVisibility(View.VISIBLE);
+
+                    ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+                    anim1.setRepeatMode(ValueAnimator.REVERSE);
+                    anim1.setRepeatCount(5);
+                    anim1.setDuration(300);
+                    anim1.start();
+
                     timer.countDownTimer.cancel();
                     MySoundPlayer.play(MySoundPlayer.CORRECT);
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(getApplicationContext(), A7_Drink.class);
+                            if (flag == 6) ++flag;
+                            intent.putExtra("flag", flag);
+                            startActivity(intent);
+                            finish();
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        }
+                    }, 2000);
                 }// 부모 View 의 Height
 
             Log.d("viewTest", "x : " + event.getRawX() + " y : " + event.getRawY());

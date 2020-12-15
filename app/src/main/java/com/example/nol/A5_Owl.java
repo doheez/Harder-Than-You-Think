@@ -1,32 +1,21 @@
 package com.example.nol;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.example.nol.A0_Enter.mediaPlayer;
 
@@ -108,13 +97,16 @@ public class A5_Owl extends AppCompatActivity {
                     System.out.println(brightness);
 
                     if (brightness <= 30) {
-                        owlSleep.setVisibility(View.INVISIBLE);
-                        Message msg = handler.obtainMessage();
-                        handler.sendMessage(msg);
+                        Message msg = handlerOwl.obtainMessage();
+                        handlerOwl.sendMessage(msg);
                         break;
                     }
                 }
+                Thread.sleep(1500);
+                Message msg = handlerCorrect.obtainMessage();
+                handlerCorrect.sendMessage(msg);
                 Thread.sleep(2000);
+
                 Intent intent = new Intent(getApplicationContext(), A6_River.class);
                 if (flag == 5) ++flag;
                 intent.putExtra("flag", flag);
@@ -127,12 +119,26 @@ public class A5_Owl extends AppCompatActivity {
         }
     }
 
-    // 정답 맞춤
-    final Handler handler = new Handler() {
+    // 부엉이 눈 뜸
+    final Handler handlerOwl = new Handler() {
+        public void handleMessage(Message msg){
+            MySoundPlayer.play(MySoundPlayer.OWL);
+            owlSleep.setVisibility(View.INVISIBLE);
+            timer.countDownTimer.cancel();
+        }
+    };
+
+    // 정답 표시
+    final Handler handlerCorrect = new Handler() {
         public void handleMessage(Message msg){
             correct.setVisibility(View.VISIBLE);
             MySoundPlayer.play(MySoundPlayer.CORRECT);
-            timer.countDownTimer.cancel();
+
+            ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+            anim1.setRepeatMode(ValueAnimator.REVERSE);
+            anim1.setRepeatCount(5);
+            anim1.setDuration(300);
+            anim1.start();
         }
     };
     @Override

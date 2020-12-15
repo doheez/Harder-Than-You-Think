@@ -1,5 +1,7 @@
 package com.example.nol;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -123,6 +125,13 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 if (Integer.parseInt(cnt.getText().toString()) == 12) { // 정답이면
                     correct.setVisibility(View.VISIBLE);
+
+                    ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+                    anim1.setRepeatMode(ValueAnimator.REVERSE);
+                    anim1.setRepeatCount(5);
+                    anim1.setDuration(300);
+                    anim1.start();
+
                     MySoundPlayer.play(MySoundPlayer.CORRECT);
                     timer.countDownTimer.cancel();
 
@@ -190,10 +199,12 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
         int parentHeight = ((ViewGroup) v.getParent()).getHeight();    // 부모 View 의 Height
 
         // 투명 영역 터치 안 되게
-        //Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
-        //int color = bmp.getPixel((int) event.getX(), (int) event.getY());
-        //if (color == Color.TRANSPARENT)
-        //    return false;
+        Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
+        if(event.getX() > 0 && event.getX() < bmp.getWidth() && event.getY() > 0 && event.getY() < bmp.getHeight()) {
+            int color = bmp.getPixel((int) event.getX(), (int) event.getY());
+            if (color == Color.TRANSPARENT)
+                return false;
+        }
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             // 뷰 누름

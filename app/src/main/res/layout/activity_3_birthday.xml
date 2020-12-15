@@ -34,8 +34,8 @@
     <!-- 게임 내용물 -->
     <ImageView
         android:id="@+id/man"
-        android:layout_width="300dp"
-        android:layout_height="370dp"
+        android:layout_width="350dp"
+        android:layout_height="432dp"
         android:layout_gravity="center"
         android:layout_marginBottom="80dp"
         android:src="@drawable/birthday1" />
@@ -50,8 +50,8 @@
 
     <ImageView
         android:id="@+id/birthdayCorrect"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/correct"
         android:visibility="gone" />

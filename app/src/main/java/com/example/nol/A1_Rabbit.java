@@ -1,5 +1,8 @@
 package com.example.nol;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -23,6 +26,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import static com.example.nol.A0_Enter.mediaPlayer;
+import static java.lang.Thread.sleep;
 
 public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener {
     ImageView rabbit, cookie, correct;
@@ -131,6 +135,13 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
             if (event.getRawX() > 300 && event.getRawX() < 500 && event.getRawY() > 160 && event.getRawY() < 290) {
                 MySoundPlayer.stop(MySoundPlayer.COOKIE);
                 correct.setVisibility(View.VISIBLE);
+
+                ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+                anim1.setRepeatMode(ValueAnimator.REVERSE);
+                anim1.setRepeatCount(5);
+                anim1.setDuration(300);
+                anim1.start();
+
                 MySoundPlayer.play(MySoundPlayer.CORRECT);
                 timer.countDownTimer.cancel();
 

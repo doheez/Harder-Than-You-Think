@@ -2,6 +2,8 @@ package com.example.nol;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -124,6 +126,12 @@ public class A2_Egg extends AppCompatActivity {
                             MySoundPlayer.stop(MySoundPlayer.BROKEN);
                             MySoundPlayer.play(MySoundPlayer.CORRECT);
                             correct.setVisibility(View.VISIBLE); //딜레이 후 시작할 코드 작성
+
+                            ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+                            anim1.setRepeatMode(ValueAnimator.REVERSE);
+                            anim1.setRepeatCount(5);
+                            anim1.setDuration(300);
+                            anim1.start();
                         }
                     }, 2000);// 2초 정도 딜레이를 준 후 시작
 

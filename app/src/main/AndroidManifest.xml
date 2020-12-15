@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.nol">
     <!-- 진동 사용권한 획득 -->
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <!-- 화면 밝기 조정 사용권한 획득 -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 화면 밝기 조정 사용권한 획득 -->
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
         tools:ignore="ProtectedPermissions" />
 
     <application
@@ -16,7 +15,6 @@
         android:roundIcon="@mipmap/ic_nol_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nol">
-
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,9 +27,10 @@
         <activity android:name=".A2_Egg" />
         <activity android:name=".A3_Birthday" />
         <activity android:name=".A4_Pizza" />
-        <activity android:name=".A5_Owl"/>
-        <activity android:name=".A6_River"/>
-        <activity android:name=".AX_Timeover"/>
+        <activity android:name=".A5_Owl" />
+        <activity android:name=".A6_River" />
+        <activity android:name=".A7_Drink" />
+        <activity android:name=".AX_Timeover" />
         <activity android:name=".MainActivity" />
     </application>
 
