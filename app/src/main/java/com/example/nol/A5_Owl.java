@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,6 +27,7 @@ public class A5_Owl extends AppCompatActivity {
     int flag;
     Activity activity = A5_Owl.this;
     Timer timer;
+    public static MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +43,11 @@ public class A5_Owl extends AppCompatActivity {
         timer = new Timer(this,this, time);
         timer.startTimer();
 
+        //코고는 소리
+        mediaPlayer = MediaPlayer.create(this, R.raw.snoring_sound);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+
         owlSleep = (ImageView) findViewById(R.id.owlSleep);
         owlAwake = (ImageView) findViewById(R.id.owlAwake);
         correct = (ImageView) findViewById(R.id.owlCorrect);
@@ -50,6 +57,7 @@ public class A5_Owl extends AppCompatActivity {
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayer.stop();
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 Intent intent = new Intent(getApplicationContext(), A4_Pizza.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
@@ -112,6 +120,7 @@ public class A5_Owl extends AppCompatActivity {
                 intent.putExtra("flag", flag);
                 startActivity(intent);
                 finish();
+
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             } catch (Settings.SettingNotFoundException | InterruptedException e) {
                 e.printStackTrace();
@@ -122,6 +131,7 @@ public class A5_Owl extends AppCompatActivity {
     // 부엉이 눈 뜸
     final Handler handlerOwl = new Handler() {
         public void handleMessage(Message msg){
+            mediaPlayer.stop();
             MySoundPlayer.play(MySoundPlayer.OWL);
             owlSleep.setVisibility(View.INVISIBLE);
             timer.countDownTimer.cancel();
@@ -146,4 +156,5 @@ public class A5_Owl extends AppCompatActivity {
         super.onBackPressed();
         mediaPlayer.stop();
     }
+
 }

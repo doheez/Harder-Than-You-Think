@@ -23,7 +23,9 @@
         <activity android:name=".A2_Egg" />
         <activity android:name=".A3_Birthday" />
         <activity android:name=".A4_Pizza" />
-        <activity android:name=".A5_Owl" />
+        <activity android:name=".A5_Owl" >
+
+        </activity>
         <activity android:name=".A6_River" />
         <activity android:name=".A7_Drink" />
         <activity android:name=".A8_Clear">
