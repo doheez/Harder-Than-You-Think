@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/dotpattern"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:layout_gravity="top"
+        android:src="@drawable/party" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="380dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/gameclear" />
+
+        <TextView
+            android:id="@+id/clearRestart"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/submit_btn"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:text="처음으로"
+            android:textColor="@color/brown_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/clearExit"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp"
+            android:background="@drawable/submit_btn"
+            android:gravity="center"
+            android:paddingVertical="10dp"
+            android:text="나가기"
+            android:textColor="@color/brown_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="420dp"
+        android:layout_height="164dp"
+        android:layout_gravity="bottom"
+        android:src="@drawable/road" />
+    <ImageView
+        android:id="@+id/board"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="bottom|right"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/board" />
+
+
+</FrameLayout>

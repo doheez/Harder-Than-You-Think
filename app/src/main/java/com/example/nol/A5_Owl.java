@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -17,8 +18,6 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.example.nol.A0_Enter.mediaPlayer;
-
 public class A5_Owl extends AppCompatActivity {
     int brightness;
     ImageView owlSleep, owlAwake, correct;
@@ -26,6 +25,7 @@ public class A5_Owl extends AppCompatActivity {
     int flag;
     Activity activity = A5_Owl.this;
     Timer timer;
+    public static MediaPlayer snoringSound;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,8 +38,13 @@ public class A5_Owl extends AppCompatActivity {
 
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.owlTimer);
-        timer = new Timer(this,this, time);
+        timer = new Timer(this,this, time, true);
         timer.startTimer();
+
+        //코고는 소리
+        snoringSound = MediaPlayer.create(this, R.raw.snoring_sound);
+        snoringSound.setLooping(true);
+        snoringSound.start();
 
         owlSleep = (ImageView) findViewById(R.id.owlSleep);
         owlAwake = (ImageView) findViewById(R.id.owlAwake);
@@ -50,6 +55,7 @@ public class A5_Owl extends AppCompatActivity {
         prevBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                snoringSound.stop();
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 Intent intent = new Intent(getApplicationContext(), A4_Pizza.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
@@ -115,6 +121,7 @@ public class A5_Owl extends AppCompatActivity {
                 intent.putExtra("key", "river");
                 startActivity(intent);
                 finish();
+
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             } catch (Settings.SettingNotFoundException | InterruptedException e) {
                 e.printStackTrace();
@@ -125,6 +132,7 @@ public class A5_Owl extends AppCompatActivity {
     // 부엉이 눈 뜸
     final Handler handlerOwl = new Handler() {
         public void handleMessage(Message msg){
+            snoringSound.stop();
             MySoundPlayer.play(MySoundPlayer.OWL);
             owlSleep.setVisibility(View.INVISIBLE);
             timer.countDownTimer.cancel();
@@ -147,6 +155,7 @@ public class A5_Owl extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        mediaPlayer.stop();
+        snoringSound.stop();
     }
+
 }

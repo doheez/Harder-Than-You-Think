@@ -22,6 +22,7 @@ public class MySoundPlayer {
     public static final int POUR_SOUND = R.raw.pour_sound;
     public static final int TIMEOVER = R.raw.timeover;
     public static final int OWL = R.raw.owl;
+    public static final int SNORING = R.raw.snoring_sound;
 
     private static int ret;
     private static SoundPool soundPool;
@@ -41,6 +42,7 @@ public class MySoundPlayer {
         soundPoolMap.put(BROKEN, soundPool.load(context, BROKEN, 2));
         soundPoolMap.put(CHICKEN, soundPool.load(context, CHICKEN, 3));
         soundPoolMap.put(CORRECT, soundPool.load(context, CORRECT, 1));
+        soundPoolMap.put(SNORING, soundPool.load(context, SNORING, 1));
         soundPoolMap.put(BUTTON_SOUND, soundPool.load(context, BUTTON_SOUND, 1));
         soundPoolMap.put(COOKIE, soundPool.load(context, COOKIE, 1));
         soundPoolMap.put(CAKE, soundPool.load(context, CAKE, 1));

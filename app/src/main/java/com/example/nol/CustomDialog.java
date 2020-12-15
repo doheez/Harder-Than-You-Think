@@ -13,6 +13,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import static com.example.nol.A5_Owl.snoringSound;
+
 public class CustomDialog {
     Context context;
     Activity activity;
@@ -136,6 +138,9 @@ public class CustomDialog {
                         } else intent = new Intent(context, A7_Drink.class);
                     }
 
+                    // 부엉이면 코 고는 소리 멈추고
+                    if(whatAmI == 5) snoringSound.stop();
+                    
                     // 인텐트 생성 후 공통으로 실행하는 부분
                     intent.putExtra("flag", flag);
                     context.startActivity(intent);

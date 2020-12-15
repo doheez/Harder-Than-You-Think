@@ -142,7 +142,7 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                             Intent intent = new Intent(getApplicationContext(), StageClear.class);
                             intent.putExtra("text",
                                     "겹쳐 있을수도 있죠\n" +
-                                            "눈썰미가 좋으세요!");
+                                            "눈썰미가 좋으시네요!");
                             if(flag == 4) ++flag;
                             intent.putExtra("flag", flag);
                             intent.putExtra("key", "owl");
