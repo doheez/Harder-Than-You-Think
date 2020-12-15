@@ -35,19 +35,18 @@
     <!-- 게임 내용물 -->
     <ImageView
         android:id="@+id/empty_glass"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:layout_gravity="center"
         android:src="@drawable/empty_glass" />
 
     <ImageView
         android:id="@+id/juice"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="140dp"
+        android:layout_height="200dp"
         android:layout_gravity="center_vertical|right"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginBottom="50dp"
         android:src="@drawable/juice" />
 
     <ImageView

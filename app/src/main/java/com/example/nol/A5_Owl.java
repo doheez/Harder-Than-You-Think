@@ -121,7 +121,6 @@ public class A5_Owl extends AppCompatActivity {
                 intent.putExtra("key", "river");
                 startActivity(intent);
                 finish();
-
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
             } catch (Settings.SettingNotFoundException | InterruptedException e) {
                 e.printStackTrace();
@@ -157,5 +156,4 @@ public class A5_Owl extends AppCompatActivity {
         super.onBackPressed();
         snoringSound.stop();
     }
-
 }
