@@ -1,5 +1,7 @@
 package com.example.nol;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -123,6 +125,13 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 if (Integer.parseInt(cnt.getText().toString()) == 12) { // 정답이면
                     correct.setVisibility(View.VISIBLE);
+
+                    ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+                    anim1.setRepeatMode(ValueAnimator.REVERSE);
+                    anim1.setRepeatCount(5);
+                    anim1.setDuration(300);
+                    anim1.start();
+
                     MySoundPlayer.play(MySoundPlayer.CORRECT);
                     timer.countDownTimer.cancel();
 

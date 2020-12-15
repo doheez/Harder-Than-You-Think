@@ -1,5 +1,7 @@
 package com.example.nol;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -132,6 +134,13 @@ public class A5_Owl extends AppCompatActivity {
         public void handleMessage(Message msg){
             correct.setVisibility(View.VISIBLE);
             MySoundPlayer.play(MySoundPlayer.CORRECT);
+
+            ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+            anim1.setRepeatMode(ValueAnimator.REVERSE);
+            anim1.setRepeatCount(5);
+            anim1.setDuration(300);
+            anim1.start();
+
             timer.countDownTimer.cancel();
         }
     };

@@ -2,6 +2,7 @@ package com.example.nol;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -146,8 +147,8 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
                 if (shakingCnt == 0 && speed > SHAKE_THRESHOLD) {
                     shakingCnt++; // 딱 한 번만 감지하도록 함. 여러 번 감지하면 효과음도 여러 번 나고 다음 액티비티가 여러 개 뜸
 
-                    ObjectAnimator animX = ObjectAnimator.ofFloat(cake, "translationX", 80);
-                    ObjectAnimator animY = ObjectAnimator.ofFloat(cake, "translationY", -1100);
+                    ObjectAnimator animX = ObjectAnimator.ofFloat(cake, "translationX", 50);
+                    ObjectAnimator animY = ObjectAnimator.ofFloat(cake, "translationY", -1150);
                     ObjectAnimator animRotation = ObjectAnimator.ofFloat(cake, "rotation", 0f, 380f);
 
                     AnimatorSet animator = new AnimatorSet();
@@ -164,6 +165,13 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
                             man.setImageResource(R.drawable.birthday2);
                             correct.setVisibility(View.VISIBLE);
                             MySoundPlayer.play(MySoundPlayer.CORRECT);
+
+                            ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+                            anim1.setRepeatMode(ValueAnimator.REVERSE);
+                            anim1.setRepeatCount(5);
+                            anim1.setDuration(300);
+                            anim1.start();
+
                             timer.countDownTimer.cancel();
                         }
                     },300);

@@ -48,8 +48,8 @@
 
     <ImageView
         android:id="@+id/owlCorrect"
-        android:layout_width="232dp"
-        android:layout_height="237dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/correct"
         android:visibility="gone"/>

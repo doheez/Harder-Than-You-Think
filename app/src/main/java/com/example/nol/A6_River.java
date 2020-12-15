@@ -1,5 +1,7 @@
 package com.example.nol;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -122,6 +124,13 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
             if(event.getRawY() > 1100 && event.getRawY() < 1200)
                 if(board.getScaleX() > 2.0 && board.getScaleY() > 2.0) {
                     correct.setVisibility(View.VISIBLE);
+
+                    ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+                    anim1.setRepeatMode(ValueAnimator.REVERSE);
+                    anim1.setRepeatCount(5);
+                    anim1.setDuration(300);
+                    anim1.start();
+
                     timer.countDownTimer.cancel();
                     MySoundPlayer.play(MySoundPlayer.CORRECT);
                 }// 부모 View 의 Height
