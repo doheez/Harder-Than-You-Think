@@ -61,8 +61,8 @@ public class A0_Enter extends AppCompatActivity {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 makeDialog("게임 설명",
                         "정말이에요. 생각보다 어려울 걸요?\n" +
-                                "각 단계마다 제시된 게임을 해결해 보세요!\n\n" +
-                                "블라블라... 말 생각해보기");
+                                "정해진 시간안에 퍼즐을 풀어보세요.\n\n" +
+                                "시간을 초과하면... 어떻게 될까요?\n");
             }
         });
 
