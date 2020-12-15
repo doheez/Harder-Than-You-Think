@@ -142,7 +142,7 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
                             Intent intent = new Intent(getApplicationContext(), AX_StageClear.class);
                             intent.putExtra("text",
                                     "작으면 크게 만들면 되죠\n" +
-                                            "이제 마지막 단계에요!");
+                                            "이제 마지막 단계예요!");
                             if(flag == 1) ++flag;
                             intent.putExtra("flag", flag);
                             intent.putExtra("key", "drink");
