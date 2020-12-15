@@ -15,15 +15,12 @@
         android:roundIcon="@mipmap/ic_nol_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nol">
-        <activity android:name=".A7_Drink">
+        <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity android:name=".Splash">
         </activity>
         <activity android:name=".A0_Enter" />
         <activity android:name=".A1_Rabbit" />
@@ -32,6 +29,7 @@
         <activity android:name=".A4_Pizza" />
         <activity android:name=".A5_Owl" />
         <activity android:name=".A6_River" />
+        <activity android:name=".A7_Drink" />
         <activity android:name=".AX_Timeover" />
         <activity android:name=".MainActivity" />
     </application>

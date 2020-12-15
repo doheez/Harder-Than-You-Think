@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 public class A7_Drink extends AppCompatActivity implements SensorEventListener {
 
     Drawable drawable;
@@ -52,9 +53,12 @@ public class A7_Drink extends AppCompatActivity implements SensorEventListener {
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mGyroscope = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 
+        Intent intent = getIntent();
+        flag = intent.getExtras().getInt("flag");
+
         // 타이머 시작
         TextView time = (TextView) findViewById(R.id.drinkTimer);
-        timer = new Timer(this,this, time);
+        timer = new Timer(this, this, time);
         timer.startTimer();
 
         // 이전 단계
@@ -79,10 +83,9 @@ public class A7_Drink extends AppCompatActivity implements SensorEventListener {
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 LayoutInflater inflater = getLayoutInflater();
-                new CustomDialog(A7_Drink.this, activity, inflater, flag, 6, timer).gameListDialog();
+                new CustomDialog(A7_Drink.this, activity, inflater, flag, 7, timer).gameListDialog();
             }
         });
-
 
 
         // 힌트 보기
@@ -91,9 +94,9 @@ public class A7_Drink extends AppCompatActivity implements SensorEventListener {
             @Override
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
-                new CustomDialog(A7_Drink.this).hintDialog("음료를 부으려면 어떻게 해야할까요?");            }
+                new CustomDialog(A7_Drink.this).hintDialog("음료를 부으려면 어떻게 해야할까요?");
+            }
         });
-
 
 
     }
@@ -164,9 +167,9 @@ public class A7_Drink extends AppCompatActivity implements SensorEventListener {
                     animRotation.setDuration(500);
                     animRotation.start();
 
-                    Log.d("센서 감지: ", "x "+x);
-                    Log.d("센서 감지: ", "y "+y);
-                    Log.d("센서 감지: ", "z "+z);
+                    Log.d("센서 감지: ", "x " + x);
+                    Log.d("센서 감지: ", "y " + y);
+                    Log.d("센서 감지: ", "z " + z);
 
 
                     new Handler().postDelayed(new Runnable() {
@@ -194,6 +197,4 @@ public class A7_Drink extends AppCompatActivity implements SensorEventListener {
             }
         }
     }
-
-
 }
