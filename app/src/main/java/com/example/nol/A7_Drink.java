@@ -28,6 +28,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import static com.example.nol.A0_Enter.mediaPlayer;
+
 public class A7_Drink extends AppCompatActivity implements SensorEventListener {
 
     Drawable drawable;
@@ -181,7 +183,8 @@ public class A7_Drink extends AppCompatActivity implements SensorEventListener {
                             drawable2.setVisibility(View.GONE);
                             //success
                             MySoundPlayer.play(MySoundPlayer.CORRECT);
-                            correct.setVisibility(View.VISIBLE); //딜레이 후 시작할 코드 작성\
+                            correct.setVisibility(View.VISIBLE);
+
                             ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
                             anim1.setRepeatMode(ValueAnimator.REVERSE);
                             anim1.setRepeatCount(5);
@@ -192,9 +195,25 @@ public class A7_Drink extends AppCompatActivity implements SensorEventListener {
                             MySoundPlayer.play(MySoundPlayer.CORRECT);
                             //딜레이 후 시작할 코드 작성
                         }
-                    }, 3000);
+                    }, 2000);
+
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(getApplicationContext(), A8_Clear.class);
+                            startActivity(intent);
+                            finish();
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                        }
+                    }, 4000);
                 }
             }
         }
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mediaPlayer.stop();
     }
 }

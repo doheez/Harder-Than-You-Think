@@ -9,10 +9,13 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
+import static com.example.nol.A5_Owl.snoringSound;
+
 public class Timer {
     private TextView time;
     private Context context;
     private Activity activity;
+    private boolean isThisOwl = false;
     public CountDownTimer countDownTimer;
 
     // 생성자
@@ -20,6 +23,12 @@ public class Timer {
         this.activity = activity;
         this.context = context;
         this.time = time;
+    }
+    public Timer(Activity activity, Context context, TextView time, boolean isThisOwl){
+        this.activity = activity;
+        this.context = context;
+        this.time = time;
+        this.isThisOwl = isThisOwl;
     }
 
     // 타이머
@@ -53,11 +62,13 @@ public class Timer {
 
             @Override
             public void onFinish() {
+                if(isThisOwl == true){
+                    snoringSound.stop();
+                }
                 Intent intent = new Intent(context, AX_Timeover.class);
                 context.startActivity(intent);
                 activity.finish();
                 activity.overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-
             }
         }.start();
     }
