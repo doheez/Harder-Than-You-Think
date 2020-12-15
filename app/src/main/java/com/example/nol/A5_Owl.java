@@ -109,19 +109,14 @@ public class A5_Owl extends AppCompatActivity {
                     }
                 }
                 Thread.sleep(1500);
+
                 Message msg = handlerCorrect.obtainMessage();
                 handlerCorrect.sendMessage(msg);
                 Thread.sleep(2000);
-                Intent intent = new Intent(getApplicationContext(), AX_StageClear.class);
-                intent.putExtra("text",
-                        "밝기를 낮추면 어두워지죠\n" +
-                                "똑똑하시군요!");
-                if(flag == 5) ++flag;
-                intent.putExtra("flag", flag);
-                intent.putExtra("key", "river");
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
+                Message msg2 = handlerToRiver.obtainMessage();
+                handlerToRiver.sendMessage(msg2);
+
             } catch (Settings.SettingNotFoundException | InterruptedException e) {
                 e.printStackTrace();
             }
@@ -149,6 +144,22 @@ public class A5_Owl extends AppCompatActivity {
             anim1.setRepeatCount(9999);
             anim1.setDuration(300);
             anim1.start();
+        }
+    };
+
+    // 화면 전환 효과 안 먹히는 현상 해결
+    final Handler handlerToRiver = new Handler() {
+        public void handleMessage(Message msg){
+            Intent intent = new Intent(getApplicationContext(), AX_StageClear.class);
+            intent.putExtra("text",
+                    "밝기를 낮추면 어두워지죠\n" +
+                            "똑똑하시군요!");
+            if(flag == 5) ++flag;
+            intent.putExtra("flag", flag);
+            intent.putExtra("key", "river");
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         }
     };
     @Override

@@ -148,7 +148,7 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
                             intent.putExtra("key", "drink");
                             startActivity(intent);
                             finish();
-                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);;
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         }
                     }, 2000);
                 }// 부모 View 의 Height
