@@ -57,6 +57,7 @@ public class Timer {
                 context.startActivity(intent);
                 activity.finish();
                 activity.overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+
             }
         }.start();
     }

@@ -16,11 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nol">
         <activity android:name=".Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".A0_Enter" />
         <activity android:name=".A1_Rabbit" />
@@ -30,6 +26,13 @@
         <activity android:name=".A5_Owl" />
         <activity android:name=".A6_River" />
         <activity android:name=".A7_Drink" />
+        <activity android:name=".A8_Clear">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".AX_Timeover" />
         <activity android:name=".MainActivity" />
     </application>
