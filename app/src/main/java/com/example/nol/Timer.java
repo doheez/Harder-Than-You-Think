@@ -33,7 +33,7 @@ public class Timer {
 
     // 타이머
     public void startTimer(){
-        final int MILLISINFUTURE = 10 * 1000; // 총 시간 (60초)
+        final int MILLISINFUTURE = 30 * 1000; // 총 시간 (30초)
         final int COUNT_DOWN_INTERVAL = 1000; // onTick 메소드를 호출할 간격 (1초)
 
         countDownTimer = new CountDownTimer(MILLISINFUTURE, COUNT_DOWN_INTERVAL){

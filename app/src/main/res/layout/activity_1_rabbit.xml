@@ -74,8 +74,7 @@
             android:layout_marginHorizontal="5dp"
             android:gravity="center"
             android:text="이전단계"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textSize="15dp" />
 
         <Button
             android:id="@+id/rabbitList"
@@ -84,8 +83,7 @@
             android:layout_marginHorizontal="5dp"
             android:gravity="center"
             android:text="게임목록"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="15dp" />
 
         <Button
             android:id="@+id/rabbitHint"
@@ -94,7 +92,6 @@
             android:layout_marginHorizontal="5dp"
             android:gravity="center"
             android:text="힌트보기"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="15dp" />
     </LinearLayout>
 </FrameLayout>
