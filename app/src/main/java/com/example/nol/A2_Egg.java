@@ -5,22 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -138,7 +132,7 @@ public class A2_Egg extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(getApplicationContext(), StageClear.class);
+                            Intent intent = new Intent(getApplicationContext(), AX_StageClear.class);
                             intent.putExtra("text",
                                     "귀여운 병아리에요!\n" +
                                             "이건 할만했죠?");

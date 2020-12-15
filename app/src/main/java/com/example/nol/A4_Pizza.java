@@ -3,29 +3,18 @@ package com.example.nol;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -139,9 +128,9 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(getApplicationContext(), StageClear.class);
+                            Intent intent = new Intent(getApplicationContext(), AX_StageClear.class);
                             intent.putExtra("text",
-                                    "겹쳐 있을수도 있죠\n" +
+                                    "겹쳐 있을 수도 있죠\n" +
                                             "눈썰미가 좋으시네요!");
                             if(flag == 4) ++flag;
                             intent.putExtra("flag", flag);

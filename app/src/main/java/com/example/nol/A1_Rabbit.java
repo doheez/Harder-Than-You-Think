@@ -1,25 +1,18 @@
 package com.example.nol;
 
-import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -149,7 +142,7 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(getApplicationContext(), StageClear.class);
+                        Intent intent = new Intent(getApplicationContext(), AX_StageClear.class);
                         intent.putExtra("text",
                                 "글자에도 토끼가 있어요!\n" +
                                         "잘 찾으셨군요!");

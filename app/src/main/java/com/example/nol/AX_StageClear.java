@@ -1,11 +1,12 @@
 package com.example.nol;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -13,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import static com.example.nol.A0_Enter.mediaPlayer;
 
-public class StageClear extends AppCompatActivity {
-    Button next, donate;
+public class AX_StageClear extends AppCompatActivity {
+    TextView next, donate;
     TextView box;
     String text, key;
     Intent getintent, outintent;
@@ -23,10 +24,10 @@ public class StageClear extends AppCompatActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stageclear);
+        setContentView(R.layout.activity_x_stageclear);
         getintent = getIntent();
 
-        donate = (Button) findViewById(R.id.donate);
+        donate = (TextView) findViewById(R.id.donate);
         donate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -37,8 +38,13 @@ public class StageClear extends AppCompatActivity {
         box = (TextView) findViewById(R.id.box);
         text = getintent.getStringExtra("text");
         box.setText(text);
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(box, "rotation", -1.5f, 1.5f);
+        anim1.setRepeatMode(ValueAnimator.REVERSE);
+        anim1.setRepeatCount(9999);
+        anim1.setDuration(300);
+        anim1.start();
 
-        next = (Button) findViewById(R.id.next);
+        next = (TextView) findViewById(R.id.next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

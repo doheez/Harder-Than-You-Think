@@ -17,7 +17,7 @@ public class AX_Timeover extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeover);
+        setContentView(R.layout.activity_x_timeover);
         MySoundPlayer.initSounds(getApplicationContext());
 
         Handler handler = new Handler();

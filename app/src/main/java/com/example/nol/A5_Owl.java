@@ -112,7 +112,7 @@ public class A5_Owl extends AppCompatActivity {
                 Message msg = handlerCorrect.obtainMessage();
                 handlerCorrect.sendMessage(msg);
                 Thread.sleep(2000);
-                Intent intent = new Intent(getApplicationContext(), StageClear.class);
+                Intent intent = new Intent(getApplicationContext(), AX_StageClear.class);
                 intent.putExtra("text",
                         "밝기를 낮추면 어두워지죠\n" +
                                 "똑똑하시군요!");

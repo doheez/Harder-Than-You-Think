@@ -7,12 +7,12 @@ import android.os.Handler;
 
 import androidx.annotation.Nullable;
 
-public class Splash extends Activity {
+public class AX_Splash extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_x_splash);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override

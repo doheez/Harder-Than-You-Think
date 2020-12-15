@@ -4,23 +4,17 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -180,7 +174,7 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
                     handler2.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(getApplicationContext(), StageClear.class);
+                            Intent intent = new Intent(getApplicationContext(), AX_StageClear.class);
                             intent.putExtra("text",
                                     "케이크는 던져야죠!\n" +
                                             "잘하셨어요");
