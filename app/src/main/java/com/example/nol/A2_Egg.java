@@ -134,7 +134,7 @@ public class A2_Egg extends AppCompatActivity {
                         public void run() {
                             Intent intent = new Intent(getApplicationContext(), AX_StageClear.class);
                             intent.putExtra("text",
-                                    "귀여운 병아리에요!\n" +
+                                    "귀여운 병아리예요!\n" +
                                             "이건 할만했죠?");
                             if(flag == 2) ++flag;
                             intent.putExtra("flag", flag);

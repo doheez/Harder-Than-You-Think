@@ -1,5 +1,7 @@
 package com.example.nol;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import static com.example.nol.A0_Enter.mediaPlayer;
 
 public class AX_Timeover extends AppCompatActivity {
-    TextView restart, exit;
+    TextView timeover, restart, exit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,6 +29,13 @@ public class AX_Timeover extends AppCompatActivity {
                 MySoundPlayer.play((MySoundPlayer.TIMEOVER));
             }
         }, 300);
+
+        timeover = (TextView) findViewById(R.id.timeover);
+        ObjectAnimator anim1 = ObjectAnimator.ofFloat(timeover, "rotation", -1.5f, 1.5f);
+        anim1.setRepeatMode(ValueAnimator.REVERSE);
+        anim1.setRepeatCount(9999);
+        anim1.setDuration(100);
+        anim1.start();
 
         // 처음으로
         restart = (TextView) findViewById(R.id.restart);

@@ -13,7 +13,8 @@
         android:background="@drawable/bubble"
         android:gravity="center"
         android:text="잠 자는 부엉이를 깨워주세요"
-        android:textSize="25dp"
+        android:textSize="25sp"
+        android:textColor="@color/brown_dark"
         android:textStyle="bold" />
 
     <!-- 타이머 -->
