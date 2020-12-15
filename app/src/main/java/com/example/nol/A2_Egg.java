@@ -121,9 +121,9 @@ public class A2_Egg extends AppCompatActivity {
                             MySoundPlayer.play(MySoundPlayer.CORRECT);
                             correct.setVisibility(View.VISIBLE); //딜레이 후 시작할 코드 작성
 
-                            ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+                            ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", -2f, 2f);
                             anim1.setRepeatMode(ValueAnimator.REVERSE);
-                            anim1.setRepeatCount(5);
+                            anim1.setRepeatCount(9999);
                             anim1.setDuration(300);
                             anim1.start();
                         }

@@ -115,9 +115,9 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                 if (Integer.parseInt(cnt.getText().toString()) == 12) { // 정답이면
                     correct.setVisibility(View.VISIBLE);
 
-                    ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+                    ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", -2f, 2f);
                     anim1.setRepeatMode(ValueAnimator.REVERSE);
-                    anim1.setRepeatCount(5);
+                    anim1.setRepeatCount(9999);
                     anim1.setDuration(300);
                     anim1.start();
 

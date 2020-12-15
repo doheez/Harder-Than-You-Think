@@ -126,9 +126,9 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
                 if(board.getScaleX() > 2.0 && board.getScaleY() > 2.0) {
                     correct.setVisibility(View.VISIBLE);
 
-                    ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", 0f, 5f);
+                    ObjectAnimator anim1 = ObjectAnimator.ofFloat(correct, "rotation", -2f, 2f);
                     anim1.setRepeatMode(ValueAnimator.REVERSE);
-                    anim1.setRepeatCount(5);
+                    anim1.setRepeatCount(9999);
                     anim1.setDuration(300);
                     anim1.start();
 
