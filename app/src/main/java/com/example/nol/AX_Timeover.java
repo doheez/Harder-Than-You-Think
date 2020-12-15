@@ -2,6 +2,7 @@ package com.example.nol;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,7 +19,14 @@ public class AX_Timeover extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeover);
         MySoundPlayer.initSounds(getApplicationContext());
-        MySoundPlayer.play((MySoundPlayer.TIMEOVER));
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                MySoundPlayer.play((MySoundPlayer.TIMEOVER));
+            }
+        }, 300);
 
         // 처음으로
         restart = (TextView) findViewById(R.id.restart);

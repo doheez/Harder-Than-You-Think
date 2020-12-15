@@ -59,6 +59,9 @@ public class MySoundPlayer {
        // else if(raw_id==MySoundPlayer.BACKGROUNDMUSIC) {
            // ret = soundPool.play(soundPoolMap.get(raw_id), 1f, 1f, 1, -1, 1.0f);
        // }
+        else if(raw_id==TIMEOVER){
+            ret = ret = soundPool.play(soundPoolMap.get(raw_id), 1f, 1f, 1, 0, 1.0f);
+        }
         else {
             ret = soundPool.play(soundPoolMap.get(raw_id), 1f, 1f, 1, 0, 1.8f);
         }
