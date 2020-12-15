@@ -50,7 +50,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginLeft="50dp"
         android:layout_gravity="top|left"
-        android:src="@drawable/board" />
+        android:src="@drawable/treeboard" />
 
     <ImageView
         android:id="@+id/riverCorrect"

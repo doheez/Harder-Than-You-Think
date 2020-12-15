@@ -149,9 +149,13 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(getApplicationContext(), A2_Egg.class);
+                        Intent intent = new Intent(getApplicationContext(), StageClear.class);
+                        intent.putExtra("text",
+                                "글자에도 토끼가 있어요!\n" +
+                                        "잘 찾으셨군요!");
                         if(flag == 1) ++flag;
                         intent.putExtra("flag", flag);
+                        intent.putExtra("key", "egg");
                         startActivity(intent);
                         finish();
                         overridePendingTransition(R.anim.fadein, R.anim.fadeout);

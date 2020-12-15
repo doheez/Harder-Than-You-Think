@@ -139,11 +139,14 @@ public class A4_Pizza extends AppCompatActivity implements View.OnTouchListener 
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(getApplicationContext(), A5_Owl.class);
-                            if (flag == 4) ++flag;
+                            Intent intent = new Intent(getApplicationContext(), StageClear.class);
+                            intent.putExtra("text",
+                                    "겹쳐 있을수도 있죠\n" +
+                                            "눈썰미가 좋으세요!");
+                            if(flag == 4) ++flag;
                             intent.putExtra("flag", flag);
+                            intent.putExtra("key", "owl");
                             startActivity(intent);
-
                             finish();
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
                         }

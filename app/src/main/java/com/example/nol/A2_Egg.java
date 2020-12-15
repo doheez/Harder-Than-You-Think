@@ -138,9 +138,13 @@ public class A2_Egg extends AppCompatActivity {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(getApplicationContext(), A3_Birthday.class);
-                            if (flag == 2) ++flag;
+                            Intent intent = new Intent(getApplicationContext(), StageClear.class);
+                            intent.putExtra("text",
+                                    "귀여운 병아리에요!\n" +
+                                            "이건 할만했죠?");
+                            if(flag == 2) ++flag;
                             intent.putExtra("flag", flag);
+                            intent.putExtra("key", "birthday");
                             startActivity(intent);
                             finish();
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);

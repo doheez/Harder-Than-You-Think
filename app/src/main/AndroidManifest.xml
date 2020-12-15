@@ -32,6 +32,7 @@
         <activity android:name=".A7_Drink" />
         <activity android:name=".AX_Timeover" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".StageClear"/>
     </application>
 
 </manifest>

@@ -106,10 +106,13 @@ public class A5_Owl extends AppCompatActivity {
                 Message msg = handlerCorrect.obtainMessage();
                 handlerCorrect.sendMessage(msg);
                 Thread.sleep(2000);
-
-                Intent intent = new Intent(getApplicationContext(), A6_River.class);
-                if (flag == 5) ++flag;
+                Intent intent = new Intent(getApplicationContext(), StageClear.class);
+                intent.putExtra("text",
+                        "밝기를 낮추면 어두워지죠\n" +
+                                "똑똑하시군요!");
+                if(flag == 5) ++flag;
                 intent.putExtra("flag", flag);
+                intent.putExtra("key", "river");
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);

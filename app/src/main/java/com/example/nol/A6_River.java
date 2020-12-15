@@ -139,12 +139,16 @@ public class A6_River extends AppCompatActivity implements View.OnTouchListener{
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(getApplicationContext(), A7_Drink.class);
-                            if (flag == 6) ++flag;
+                            Intent intent = new Intent(getApplicationContext(), StageClear.class);
+                            intent.putExtra("text",
+                                    "작으면 크게 만들면 되죠\n" +
+                                            "이제 마지막 단계에요!");
+                            if(flag == 1) ++flag;
                             intent.putExtra("flag", flag);
+                            intent.putExtra("key", "drink");
                             startActivity(intent);
                             finish();
-                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+                            overridePendingTransition(R.anim.fadein, R.anim.fadeout);;
                         }
                     }, 2000);
                 }// 부모 View 의 Height

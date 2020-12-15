@@ -180,9 +180,13 @@ public class A3_Birthday extends AppCompatActivity implements SensorEventListene
                     handler2.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(getApplicationContext(), A4_Pizza.class);
+                            Intent intent = new Intent(getApplicationContext(), StageClear.class);
+                            intent.putExtra("text",
+                                    "케이크는 던져야죠!\n" +
+                                            "잘하셨어요");
                             if(flag == 3) ++flag;
                             intent.putExtra("flag", flag);
+                            intent.putExtra("key", "pizza");
                             startActivity(intent);
                             finish();
                             overridePendingTransition(R.anim.fadein, R.anim.fadeout);
