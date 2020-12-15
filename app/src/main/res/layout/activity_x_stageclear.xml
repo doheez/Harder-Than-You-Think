@@ -7,16 +7,16 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="410dp"
-        android:layout_height="200dp"
-        android:src="@drawable/party2"
-        android:layout_gravity="top"/>
+        android:layout_width="610dp"
+        android:layout_height="329dp"
+        android:layout_gravity="top|center"
+        android:src="@drawable/balloon" />
     <TextView
         android:id="@+id/box"
         android:layout_width="350dp"
         android:layout_height="220dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="150dp"
+        android:layout_marginBottom="145dp"
         android:background="@drawable/box"
         android:gravity="center"
         android:text="test"
