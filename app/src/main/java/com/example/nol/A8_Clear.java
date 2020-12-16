@@ -31,7 +31,7 @@ public class A8_Clear extends AppCompatActivity {
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
-                intent.putExtra("flag", 0); // 게임 성공한 단계 초기화
+                intent.putExtra("flag", 7); // 게임 성공한 단계 초기화하고 싶으면 0 넘겨주기
                 intent.putExtra("fromSplash", 0);
                 startActivity(intent);
                 finish();

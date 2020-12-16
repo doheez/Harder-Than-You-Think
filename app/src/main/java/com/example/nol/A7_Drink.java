@@ -159,7 +159,7 @@ public class A7_Drink extends AppCompatActivity implements SensorEventListener {
                 lastX = (lastX + x * dt) * RAD2DGR;
                 lastZ = (lastZ + z * dt) * RAD2DGR;
 
-                if (y < -1.3 && count == 0) {
+                if (z > 1.4 && count == 0) {
                     MySoundPlayer.play(MySoundPlayer.POUR_SOUND);
                     drawable = getResources().getDrawable(R.drawable.pour_juice);
                     imageView.setImageDrawable(drawable); // 이미지를 적용합니다
