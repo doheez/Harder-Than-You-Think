@@ -32,6 +32,7 @@ public class A8_Clear extends AppCompatActivity {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
                 intent.putExtra("flag", 0); // 게임 성공한 단계 초기화
+                intent.putExtra("fromSplash", 0);
                 startActivity(intent);
                 finish();
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
@@ -44,6 +45,7 @@ public class A8_Clear extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
+                mediaPlayer.stop();
                 finish();
             }
         });

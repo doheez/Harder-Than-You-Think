@@ -19,6 +19,7 @@ public class AX_Splash extends Activity {
             public void run() {
                 Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
                 intent.putExtra("flag", 0);
+                intent.putExtra("fromSplash", 1);
                 startActivity(intent);
                 finish();
             }

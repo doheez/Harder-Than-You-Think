@@ -56,6 +56,7 @@ public class A1_Rabbit extends AppCompatActivity implements View.OnTouchListener
                 MySoundPlayer.play(MySoundPlayer.BUTTON_SOUND);
                 Intent intent = new Intent(getApplicationContext(), A0_Enter.class);
                 intent.putExtra("flag", flag); // 이전 단계로 가도 현재 단계까지 깼음을 알 수 있음
+                intent.putExtra("fromSplash", 0);
                 startActivity(intent);
                 timer.countDownTimer.cancel();
                 finish();
