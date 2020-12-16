@@ -28,7 +28,7 @@ public class A0_Enter extends AppCompatActivity {
 
         // 최초 실행 시에만 배경음악 생성함
         // 게임화면 -> 이전단계 -> Enter화면으로 되돌아왔을 때는 음악 생성 X
-        if (flag == 0) {
+        if (flag == 0 && mediaPlayer == null) {
             mediaPlayer = MediaPlayer.create(this, R.raw.backgroundmusic);
             mediaPlayer.setLooping(true);
             mediaPlayer.start();
